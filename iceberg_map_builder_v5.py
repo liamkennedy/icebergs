@@ -331,9 +331,8 @@ def build_map(
         start_location = [df["_lat"].mean(), df["_lon"].mean()]
         zoom = 3
 
-    m = folium.Map(location=start_location, zoom_start=zoom, tiles="CartoDB positron", control_scale=True)
-    folium.TileLayer("OpenStreetMap", name="OpenStreetMap").add_to(m)
-    folium.TileLayer("Esri WorldImagery", name="Esri World Imagery", attr="Esri").add_to(m)
+    m = folium.Map(location=start_location, zoom_start=zoom, tiles=None, control_scale=True)
+    folium.TileLayer("Esri WorldImagery", name="Esri World Imagery", attr="Esri", show=True).add_to(m)
 
     folium.Marker(
         [SOUTH_GEORGIA_LAT, SOUTH_GEORGIA_LON],

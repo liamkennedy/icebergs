@@ -210,11 +210,18 @@ def add_tracks(html_path, history, start, end, names):
         for row in group.itertuples(index=False):
             tooltip=f'{name} | {row.date} | {row.lat:.3f}, {row.lon:.3f}'
             lines.append(f'L.circleMarker([{float(row.lat)},{float(row.lon)}],{{radius:3,color:"#006a9e",fillOpacity:0.7,weight:1}}).bindTooltip({json.dumps(tooltip)}).addTo(trackLayer);')
-    script = ('\n<script>\n(function(){\nconst trackLayer=L.layerGroup();\n' + '\n'.join(lines)
-              + f'\ntrackLayer.addTo({map_name});\nL.control.layers(null, '
-              + json.dumps({f'Historical tracks ({start} to {end})':'trackLayer'}).replace('"trackLayer"','trackLayer')
-              + f',{{collapsed:true}}).addTo({map_name});\n}})();\n</script>\n')
-    html_path.write_text(html.replace('</body>', script+'</body>'), encoding='utf-8')
+    control_match = re.search(r'let (layer_control_[a-f0-9]+)\s*=\s*L\.control\.layers\(', html)
+    if not control_match:
+        raise RuntimeError('Unable to locate Folium layer control')
+    control_name = control_match.group(1)
+    script = ('\n// Historical iceberg tracks\nvar trackLayer = L.layerGroup();\n'
+              + '\n'.join(lines)
+              + f'\ntrackLayer.addTo({map_name});\n'
+              + f'{control_name}.addOverlay(trackLayer, {json.dumps("Historical tracks (" + str(start) + " to " + str(end) + ")")});\n')
+    last_script_end = html.rfind('</script>')
+    if last_script_end < 0:
+        raise RuntimeError('Unable to locate final Folium script block')
+    html_path.write_text(html[:last_script_end] + script + html[last_script_end:], encoding='utf-8')
     return tracks
 
 

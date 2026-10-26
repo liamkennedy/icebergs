@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_1ca1d134ec754a2a5872944add72482d {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.css"/>
+    <script src="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.css"/>
+</head>
+<body>
+    
+    
+    <div style="position: fixed; top: 10px; left: 50px; z-index: 9999; background: white;
+                padding: 8px 12px; border: 1px solid #999; border-radius: 6px;
+                font-family: Arial, sans-serif; font-size: 14px;">
+      <b>USNIC Antarctic Icebergs</b><br>32 mapped positions<br>
+      Source: U.S. National Ice Center current CSV
+    </div>
+    
+    
+            <div class="folium-map" id="map_1ca1d134ec754a2a5872944add72482d" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_1ca1d134ec754a2a5872944add72482d = L.map(
+                "map_1ca1d134ec754a2a5872944add72482d",
+                {
+                    center: [-72.0, 0.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 3,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_1ca1d134ec754a2a5872944add72482d);
+
+            
+
+        
+    
+            var tile_layer_b0f42feb69fc54fb6d3050490fcdb188 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_b0f42feb69fc54fb6d3050490fcdb188.addTo(map_1ca1d134ec754a2a5872944add72482d);
+        
+    
+            var tile_layer_95af5b2dfee01d03dd6b0740d05590a9 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_95af5b2dfee01d03dd6b0740d05590a9.addTo(map_1ca1d134ec754a2a5872944add72482d);
+        
+    
+            var tile_layer_62a71e6b1d9d0b0944bae077357feb38 = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "Esri",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_62a71e6b1d9d0b0944bae077357feb38.addTo(map_1ca1d134ec754a2a5872944add72482d);
+        
+    
+            var marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a = L.markerClusterGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_139ef194df00d7405bdf885ff09730c7 = L.circleMarker(
+                [57.99, 36.61],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a);
+        
+    
+        var popup_ee5c4502c338ee40b5f3c83b400c4941 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_166a08dbd125a7223a1e27c0572d4ad0 = $(`<div id="html_166a08dbd125a7223a1e27c0572d4ad0" style="width: 100.0%; height: 100.0%;"><b>A76C</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>A76C</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>16</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>7</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-57.99</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>-36.61</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>112.44</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>84.9</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>291.21</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>05/08/2026</td></tr></table></div>`)[0];
+                popup_ee5c4502c338ee40b5f3c83b400c4941.setContent(html_166a08dbd125a7223a1e27c0572d4ad0);
+            
+        
+
+        circle_marker_139ef194df00d7405bdf885ff09730c7.bindPopup(popup_ee5c4502c338ee40b5f3c83b400c4941)
+        ;
+
+        
+    
+    
+            circle_marker_139ef194df00d7405bdf885ff09730c7.bindTooltip(
+                `<div>
+                     A76C
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_94e4362db3706ff40861117c2d3ba60b = L.circleMarker(
+                [64.11, 55.3],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a);
+        
+    
+        var popup_d7fffeaec7d005d837a521d786249539 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_f31cc6acef56cfb819ee2884f0cdf6fb = $(`<div id="html_f31cc6acef56cfb819ee2884f0cdf6fb" style="width: 100.0%; height: 100.0%;"><b>A81</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>A81</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>28</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>25</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-64.11</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>-55.3</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>549.33</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>414.81</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>1422.75</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>05/08/2026</td></tr></table></div>`)[0];
+                popup_d7fffeaec7d005d837a521d786249539.setContent(html_f31cc6acef56cfb819ee2884f0cdf6fb);
+            
+        
+
+        circle_marker_94e4362db3706ff40861117c2d3ba60b.bindPopup(popup_d7fffeaec7d005d837a521d786249539)
+        ;
+
+        
+    
+    
+            circle_marker_94e4362db3706ff40861117c2d3ba60b.bindTooltip(
+                `<div>
+                     A81
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8291fb114fdfed061bcd5addcbc70d86 = L.circleMarker(
+                [65.97, 53.35],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a);
+        
+    
+        var popup_45cd25262d1c229b95a22dc5127f0ab1 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_6750efa61ae65c25a9036b4ab76a017c = $(`<div id="html_6750efa61ae65c25a9036b4ab76a017c" style="width: 100.0%; height: 100.0%;"><b>A83</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>A83</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>12</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>7</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-65.97</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>-53.35</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>73.29</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>55.34</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>189.82</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>05/08/2026</td></tr></table></div>`)[0];
+                popup_45cd25262d1c229b95a22dc5127f0ab1.setContent(html_6750efa61ae65c25a9036b4ab76a017c);
+            
+        
+
+        circle_marker_8291fb114fdfed061bcd5addcbc70d86.bindPopup(popup_45cd25262d1c229b95a22dc5127f0ab1)
+        ;
+
+        
+    
+    
+            circle_marker_8291fb114fdfed061bcd5addcbc70d86.bindTooltip(
+                `<div>
+                     A83
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_38b8f4d3680ac68feed64fa7b760f6aa = L.circleMarker(
+                [72.96, 107.82],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a);
+        
+    
+        var popup_c5f485af4d519f454f2e072b54f7db41 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_c8044c776632cbf6a0c087884da2aced = $(`<div id="html_c8044c776632cbf6a0c087884da2aced" style="width: 100.0%; height: 100.0%;"><b>A84</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>A84</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>12</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>6</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-72.96</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>-107.82</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>76.06</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>57.43</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>196.99</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>05/08/2026</td></tr></table></div>`)[0];
+                popup_c5f485af4d519f454f2e072b54f7db41.setContent(html_c8044c776632cbf6a0c087884da2aced);
+            
+        
+
+        circle_marker_38b8f4d3680ac68feed64fa7b760f6aa.bindPopup(popup_c5f485af4d519f454f2e072b54f7db41)
+        ;
+
+        
+    
+    
+            circle_marker_38b8f4d3680ac68feed64fa7b760f6aa.bindTooltip(
+                `<div>
+                     A84
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_236cf845304336c4cf20ce9b47f9cbf6 = L.circleMarker(
+                [67.45, 57.24],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a);
+        
+    
+        var popup_e49cedc8636f31ae77424422de24a70c = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_df5ab1e445be12ff7b96f18332febfc6 = $(`<div id="html_df5ab1e445be12ff7b96f18332febfc6" style="width: 100.0%; height: 100.0%;"><b>A85</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>A85</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>10</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>3</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-67.45</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>-57.24</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>24.18</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>18.26</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>62.62</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>05/08/2026</td></tr></table></div>`)[0];
+                popup_e49cedc8636f31ae77424422de24a70c.setContent(html_df5ab1e445be12ff7b96f18332febfc6);
+            
+        
+
+        circle_marker_236cf845304336c4cf20ce9b47f9cbf6.bindPopup(popup_e49cedc8636f31ae77424422de24a70c)
+        ;
+
+        
+    
+    
+            circle_marker_236cf845304336c4cf20ce9b47f9cbf6.bindTooltip(
+                `<div>
+                     A85
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_bfc04a3ec52d4ca18d40ad51a0260add = L.circleMarker(
+                [66.09, 143.2],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a);
+        
+    
+        var popup_9fbebbb0daf72fb777952312bca08c4c = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_3063b8edb9ec8493305e5e9ab0828d53 = $(`<div id="html_3063b8edb9ec8493305e5e9ab0828d53" style="width: 100.0%; height: 100.0%;"><b>B09B</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>B09B</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>27</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>10</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-66.09</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>143.2</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>196.5</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>148.38</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>508.94</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>05/08/2026</td></tr></table></div>`)[0];
+                popup_9fbebbb0daf72fb777952312bca08c4c.setContent(html_3063b8edb9ec8493305e5e9ab0828d53);
+            
+        
+
+        circle_marker_bfc04a3ec52d4ca18d40ad51a0260add.bindPopup(popup_9fbebbb0daf72fb777952312bca08c4c)
+        ;
+
+        
+    
+    
+            circle_marker_bfc04a3ec52d4ca18d40ad51a0260add.bindTooltip(
+                `<div>
+                     B09B
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_32c8c93ad8b62c570756d681a4cf8220 = L.circleMarker(
+                [68.2, 41.55],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a);
+        
+    
+        var popup_9a2b6720e8d1b2f972f310c6bfca89bf = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_6c9dd94c8cbb269d02125ebb0618a1b2 = $(`<div id="html_6c9dd94c8cbb269d02125ebb0618a1b2" style="width: 100.0%; height: 100.0%;"><b>B09G</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>B09G</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>12</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>7</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-68.2</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>41.55</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>61.8</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>46.66</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>160.06</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>05/08/2026</td></tr></table></div>`)[0];
+                popup_9a2b6720e8d1b2f972f310c6bfca89bf.setContent(html_6c9dd94c8cbb269d02125ebb0618a1b2);
+            
+        
+
+        circle_marker_32c8c93ad8b62c570756d681a4cf8220.bindPopup(popup_9a2b6720e8d1b2f972f310c6bfca89bf)
+        ;
+
+        
+    
+    
+            circle_marker_32c8c93ad8b62c570756d681a4cf8220.bindTooltip(
+                `<div>
+                     B09G
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_63ef6e1cbe4bd1cc462dc3efc400ebb8 = L.circleMarker(
+                [70.31, 179.72],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a);
+        
+    
+        var popup_c1a9911ddab2c6137e2ee73ed111b893 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_4285268153a8ea31905208e52d14ee10 = $(`<div id="html_4285268153a8ea31905208e52d14ee10" style="width: 100.0%; height: 100.0%;"><b>B22A</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>B22A</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>29</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>25</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-70.31</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>-179.72</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>549.47</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>414.92</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>1423.13</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>05/08/2026</td></tr></table></div>`)[0];
+                popup_c1a9911ddab2c6137e2ee73ed111b893.setContent(html_4285268153a8ea31905208e52d14ee10);
+            
+        
+
+        circle_marker_63ef6e1cbe4bd1cc462dc3efc400ebb8.bindPopup(popup_c1a9911ddab2c6137e2ee73ed111b893)
+        ;
+
+        
+    
+    
+            circle_marker_63ef6e1cbe4bd1cc462dc3efc400ebb8.bindTooltip(
+                `<div>
+                     B22A
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3d9492f4e12e150bbf17f8cde5018847 = L.circleMarker(
+                [67.18, 178.33],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a);
+        
+    
+        var popup_93ddad18a35a14c8fc146cb87641143d = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_19ec3812fd6d344a4730196815107239 = $(`<div id="html_19ec3812fd6d344a4730196815107239" style="width: 100.0%; height: 100.0%;"><b>B22F</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>B22F</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>14</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>7</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-67.18</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>178.33</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>91.64</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>69.2</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>237.35</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>05/08/2026</td></tr></table></div>`)[0];
+                popup_93ddad18a35a14c8fc146cb87641143d.setContent(html_19ec3812fd6d344a4730196815107239);
+            
+        
+
+        circle_marker_3d9492f4e12e150bbf17f8cde5018847.bindPopup(popup_93ddad18a35a14c8fc146cb87641143d)
+        ;
+
+        
+    
+    
+            circle_marker_3d9492f4e12e150bbf17f8cde5018847.bindTooltip(
+                `<div>
+                     B22F
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d1672f6a7bf98af6b3a6006fc7b0aa34 = L.circleMarker(
+                [71.42, 171.94],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a);
+        
+    
+        var popup_d550ba69135c0650655695ed8c141f97 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_ca37473fdae80a5ea047bcf4808c8432 = $(`<div id="html_ca37473fdae80a5ea047bcf4808c8432" style="width: 100.0%; height: 100.0%;"><b>B22H</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>B22H</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>8</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>6</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-71.42</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>171.94</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>30.28</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>22.86</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>78.42</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>05/08/2026</td></tr></table></div>`)[0];
+                popup_d550ba69135c0650655695ed8c141f97.setContent(html_ca37473fdae80a5ea047bcf4808c8432);
+            
+        
+
+        circle_marker_d1672f6a7bf98af6b3a6006fc7b0aa34.bindPopup(popup_d550ba69135c0650655695ed8c141f97)
+        ;
+
+        
+    
+    
+            circle_marker_d1672f6a7bf98af6b3a6006fc7b0aa34.bindTooltip(
+                `<div>
+                     B22H
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8e1caa767f93c7ca97a6d6f2a3be011c = L.circleMarker(
+                [74.25, 129.96],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a);
+        
+    
+        var popup_2ef4ec02f214d6e8fcf01d03a0c97102 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_259d780b5e41ec454965b5461e9361b6 = $(`<div id="html_259d780b5e41ec454965b5461e9361b6" style="width: 100.0%; height: 100.0%;"><b>B51</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>B51</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>16</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>3</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-74.25</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>-129.96</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>31.48</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>23.77</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>81.52</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>05/08/2026</td></tr></table></div>`)[0];
+                popup_2ef4ec02f214d6e8fcf01d03a0c97102.setContent(html_259d780b5e41ec454965b5461e9361b6);
+            
+        
+
+        circle_marker_8e1caa767f93c7ca97a6d6f2a3be011c.bindPopup(popup_2ef4ec02f214d6e8fcf01d03a0c97102)
+        ;
+
+        
+    
+    
+            circle_marker_8e1caa767f93c7ca97a6d6f2a3be011c.bindTooltip(
+                `<div>
+                     B51
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_aeec1d6c779d4fa4e49844d2cff16941 = L.circleMarker(
+                [65.86, 143.01],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a);
+        
+    
+        var popup_5ab97e26f73784735dc62dd0d8698636 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_059e1995cfc9e11ea490fea578eabd09 = $(`<div id="html_059e1995cfc9e11ea490fea578eabd09" style="width: 100.0%; height: 100.0%;"><b>C15</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>C15</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>14</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>10</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-65.86</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>143.01</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>82.44</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>62.25</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>213.53</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>05/08/2026</td></tr></table></div>`)[0];
+                popup_5ab97e26f73784735dc62dd0d8698636.setContent(html_059e1995cfc9e11ea490fea578eabd09);
+            
+        
+
+        circle_marker_aeec1d6c779d4fa4e49844d2cff16941.bindPopup(popup_5ab97e26f73784735dc62dd0d8698636)
+        ;
+
+        
+    
+    
+            circle_marker_aeec1d6c779d4fa4e49844d2cff16941.bindTooltip(
+                `<div>
+                     C15
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7e7c79bfc3f001be1e51e129cb9fa9a0 = L.circleMarker(
+                [66.91, 47.36],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a);
+        
+    
+        var popup_3c6c8a20476c1bc4e4db44d32512eb15 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_c3c76a82835ef5d4a12bf6477a1a0487 = $(`<div id="html_c3c76a82835ef5d4a12bf6477a1a0487" style="width: 100.0%; height: 100.0%;"><b>C18B</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>C18B</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>10</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>4</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-66.91</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>47.36</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>42.63</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>32.19</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>110.4</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>05/08/2026</td></tr></table></div>`)[0];
+                popup_3c6c8a20476c1bc4e4db44d32512eb15.setContent(html_c3c76a82835ef5d4a12bf6477a1a0487);
+            
+        
+
+        circle_marker_7e7c79bfc3f001be1e51e129cb9fa9a0.bindPopup(popup_3c6c8a20476c1bc4e4db44d32512eb15)
+        ;
+
+        
+    
+    
+            circle_marker_7e7c79bfc3f001be1e51e129cb9fa9a0.bindTooltip(
+                `<div>
+                     C18B
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_948e82d35b03a3d9450c5a4a2feafcca = L.circleMarker(
+                [68.47, 39.07],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a);
+        
+    
+        var popup_c99610e7b527a4c7059d036eaebce476 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_7cc34a031236f4f04aa562425a188530 = $(`<div id="html_7cc34a031236f4f04aa562425a188530" style="width: 100.0%; height: 100.0%;"><b>C18C</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>C18C</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>10</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>2</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-68.47</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>39.07</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>20.49</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>15.47</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>53.07</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>05/08/2026</td></tr></table></div>`)[0];
+                popup_c99610e7b527a4c7059d036eaebce476.setContent(html_7cc34a031236f4f04aa562425a188530);
+            
+        
+
+        circle_marker_948e82d35b03a3d9450c5a4a2feafcca.bindPopup(popup_c99610e7b527a4c7059d036eaebce476)
+        ;
+
+        
+    
+    
+            circle_marker_948e82d35b03a3d9450c5a4a2feafcca.bindTooltip(
+                `<div>
+                     C18C
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f15916d92ff99196d8c43fe2a39141a1 = L.circleMarker(
+                [64.98, 95.84],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a);
+        
+    
+        var popup_be090d5691659e0f42eb9910c09f9ebe = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_bcb780c6b7b04160cf1baa2804436cb9 = $(`<div id="html_bcb780c6b7b04160cf1baa2804436cb9" style="width: 100.0%; height: 100.0%;"><b>C21B</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>C21B</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>12</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>8</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-64.98</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>95.84</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>99.99</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>75.5</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>258.97</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>05/08/2026</td></tr></table></div>`)[0];
+                popup_be090d5691659e0f42eb9910c09f9ebe.setContent(html_bcb780c6b7b04160cf1baa2804436cb9);
+            
+        
+
+        circle_marker_f15916d92ff99196d8c43fe2a39141a1.bindPopup(popup_be090d5691659e0f42eb9910c09f9ebe)
+        ;
+
+        
+    
+    
+            circle_marker_f15916d92ff99196d8c43fe2a39141a1.bindTooltip(
+                `<div>
+                     C21B
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_fba04acaaa58c64cdde5493a4f898a9c = L.circleMarker(
+                [64.84, 96.02],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a);
+        
+    
+        var popup_10fcda149add8817736b67ad706ee9e9 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_486f5c066e59ed465377d32d530a10b7 = $(`<div id="html_486f5c066e59ed465377d32d530a10b7" style="width: 100.0%; height: 100.0%;"><b>C24</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>C24</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>11</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>3</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-64.84</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>96.02</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>22.35</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>16.87</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>57.88</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>05/08/2026</td></tr></table></div>`)[0];
+                popup_10fcda149add8817736b67ad706ee9e9.setContent(html_486f5c066e59ed465377d32d530a10b7);
+            
+        
+
+        circle_marker_fba04acaaa58c64cdde5493a4f898a9c.bindPopup(popup_10fcda149add8817736b67ad706ee9e9)
+        ;
+
+        
+    
+    
+            circle_marker_fba04acaaa58c64cdde5493a4f898a9c.bindTooltip(
+                `<div>
+                     C24
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d3d32dd9e1015bb6665fe46935f1e7cc = L.circleMarker(
+                [64.78, 96.28],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a);
+        
+    
+        var popup_59de1c38c10f8277aaa7d30c2c507928 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_e46039b71778e1935af701d344670c60 = $(`<div id="html_e46039b71778e1935af701d344670c60" style="width: 100.0%; height: 100.0%;"><b>C30</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>C30</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>9</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>3</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-64.78</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>96.28</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>28.98</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>21.89</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>75.06</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>05/08/2026</td></tr></table></div>`)[0];
+                popup_59de1c38c10f8277aaa7d30c2c507928.setContent(html_e46039b71778e1935af701d344670c60);
+            
+        
+
+        circle_marker_d3d32dd9e1015bb6665fe46935f1e7cc.bindPopup(popup_59de1c38c10f8277aaa7d30c2c507928)
+        ;
+
+        
+    
+    
+            circle_marker_d3d32dd9e1015bb6665fe46935f1e7cc.bindTooltip(
+                `<div>
+                     C30
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e093928edd3b5cea09222303c8af0d90 = L.circleMarker(
+                [64.68, 96.49],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a);
+        
+    
+        var popup_fe30a52db482ed73cbf802d378a0f811 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_6c8ba15e700a8946fd0d56e11a94ed5e = $(`<div id="html_6c8ba15e700a8946fd0d56e11a94ed5e" style="width: 100.0%; height: 100.0%;"><b>C31</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>C31</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>9</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>3</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-64.68</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>96.49</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>28.21</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>21.3</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>73.07</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>05/08/2026</td></tr></table></div>`)[0];
+                popup_fe30a52db482ed73cbf802d378a0f811.setContent(html_6c8ba15e700a8946fd0d56e11a94ed5e);
+            
+        
+
+        circle_marker_e093928edd3b5cea09222303c8af0d90.bindPopup(popup_fe30a52db482ed73cbf802d378a0f811)
+        ;
+
+        
+    
+    
+            circle_marker_e093928edd3b5cea09222303c8af0d90.bindTooltip(
+                `<div>
+                     C31
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7912dd54c40d8776fbc54b2ef2926563 = L.circleMarker(
+                [67.47, 146.48],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a);
+        
+    
+        var popup_7cd10ef973997192ce2d701224493755 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_4f37382817c0d5c38f95757125d32f0b = $(`<div id="html_4f37382817c0d5c38f95757125d32f0b" style="width: 100.0%; height: 100.0%;"><b>C36</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>C36</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>23</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>16</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-67.47</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>146.48</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>330.41</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>249.5</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>855.76</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>05/08/2026</td></tr></table></div>`)[0];
+                popup_7cd10ef973997192ce2d701224493755.setContent(html_4f37382817c0d5c38f95757125d32f0b);
+            
+        
+
+        circle_marker_7912dd54c40d8776fbc54b2ef2926563.bindPopup(popup_7cd10ef973997192ce2d701224493755)
+        ;
+
+        
+    
+    
+            circle_marker_7912dd54c40d8776fbc54b2ef2926563.bindTooltip(
+                `<div>
+                     C36
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c97f57e6e97a967b7cd6f3223e149acf = L.circleMarker(
+                [68.39, 71.68],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a);
+        
+    
+        var popup_f51138292ac12d3bda03d9d426d9160c = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_a658f2872858b37fbcf26a213b8b4c52 = $(`<div id="html_a658f2872858b37fbcf26a213b8b4c52" style="width: 100.0%; height: 100.0%;"><b>C39</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>C39</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>8</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>4</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-68.39</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>71.68</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>22.14</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>16.72</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>57.36</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>05/08/2026</td></tr></table></div>`)[0];
+                popup_f51138292ac12d3bda03d9d426d9160c.setContent(html_a658f2872858b37fbcf26a213b8b4c52);
+            
+        
+
+        circle_marker_c97f57e6e97a967b7cd6f3223e149acf.bindPopup(popup_f51138292ac12d3bda03d9d426d9160c)
+        ;
+
+        
+    
+    
+            circle_marker_c97f57e6e97a967b7cd6f3223e149acf.bindTooltip(
+                `<div>
+                     C39
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7483148ee084f90c34a9e5f6de65aa76 = L.circleMarker(
+                [66.63, 81.92],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a);
+        
+    
+        var popup_3b8d426303bd9a97b62d2b00c919fc58 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_3dcfc9e6396aba1f797ce34c413b037c = $(`<div id="html_3dcfc9e6396aba1f797ce34c413b037c" style="width: 100.0%; height: 100.0%;"><b>D15A</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>D15A</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>51</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>22</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-66.63</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>81.92</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>1172.77</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>885.59</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>3037.47</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>05/08/2026</td></tr></table></div>`)[0];
+                popup_3b8d426303bd9a97b62d2b00c919fc58.setContent(html_3dcfc9e6396aba1f797ce34c413b037c);
+            
+        
+
+        circle_marker_7483148ee084f90c34a9e5f6de65aa76.bindPopup(popup_3b8d426303bd9a97b62d2b00c919fc58)
+        ;
+
+        
+    
+    
+            circle_marker_7483148ee084f90c34a9e5f6de65aa76.bindTooltip(
+                `<div>
+                     D15A
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b16a76736b216725a73e6e6c55750994 = L.circleMarker(
+                [67.02, 81.57],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a);
+        
+    
+        var popup_39653e57aadacb325fc919fe4523ba41 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_1d83f41ac4897636368612efa2e343b2 = $(`<div id="html_1d83f41ac4897636368612efa2e343b2" style="width: 100.0%; height: 100.0%;"><b>D15B</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>D15B</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>20</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>12</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-67.02</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>81.57</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>235.72</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>178.0</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>610.52</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>05/08/2026</td></tr></table></div>`)[0];
+                popup_39653e57aadacb325fc919fe4523ba41.setContent(html_1d83f41ac4897636368612efa2e343b2);
+            
+        
+
+        circle_marker_b16a76736b216725a73e6e6c55750994.bindPopup(popup_39653e57aadacb325fc919fe4523ba41)
+        ;
+
+        
+    
+    
+            circle_marker_b16a76736b216725a73e6e6c55750994.bindTooltip(
+                `<div>
+                     D15B
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_ee7e35ac27373e0a8746ab1198a29614 = L.circleMarker(
+                [67.15, 79.5],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a);
+        
+    
+        var popup_a7e47eca5060850ebff8a15532181eae = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_037c8c9d93259e72b5034d201ddd754f = $(`<div id="html_037c8c9d93259e72b5034d201ddd754f" style="width: 100.0%; height: 100.0%;"><b>D15C</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>D15C</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>14</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>7</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-67.15</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>79.5</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>44.89</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>33.89</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>116.25</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>05/08/2026</td></tr></table></div>`)[0];
+                popup_a7e47eca5060850ebff8a15532181eae.setContent(html_037c8c9d93259e72b5034d201ddd754f);
+            
+        
+
+        circle_marker_ee7e35ac27373e0a8746ab1198a29614.bindPopup(popup_a7e47eca5060850ebff8a15532181eae)
+        ;
+
+        
+    
+    
+            circle_marker_ee7e35ac27373e0a8746ab1198a29614.bindTooltip(
+                `<div>
+                     D15C
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6ebb936a3287d92d4b5a135736ea6e8c = L.circleMarker(
+                [67.27, 79.33],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a);
+        
+    
+        var popup_22db5a1f394ea9eec32e772459df2493 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_8ade18fd2059d2ea1c20eac3cd82f9d5 = $(`<div id="html_8ade18fd2059d2ea1c20eac3cd82f9d5" style="width: 100.0%; height: 100.0%;"><b>D15D</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>D15D</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>8</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>6</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-67.27</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>79.33</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>27.17</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>20.52</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>70.36</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>05/08/2026</td></tr></table></div>`)[0];
+                popup_22db5a1f394ea9eec32e772459df2493.setContent(html_8ade18fd2059d2ea1c20eac3cd82f9d5);
+            
+        
+
+        circle_marker_6ebb936a3287d92d4b5a135736ea6e8c.bindPopup(popup_22db5a1f394ea9eec32e772459df2493)
+        ;
+
+        
+    
+    
+            circle_marker_6ebb936a3287d92d4b5a135736ea6e8c.bindTooltip(
+                `<div>
+                     D15D
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_a4d60e5594543296cf69b0ae24c191c3 = L.circleMarker(
+                [69.43, 74.71],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a);
+        
+    
+        var popup_4d233b09d726104601cc5ad81ae5dda6 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_3e17cce0a27df6a6a460d3e3eadeb9b7 = $(`<div id="html_3e17cce0a27df6a6a460d3e3eadeb9b7" style="width: 100.0%; height: 100.0%;"><b>D23</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>D23</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>7</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>6</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-69.43</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>74.71</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>40.77</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>30.79</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>105.6</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>05/08/2026</td></tr></table></div>`)[0];
+                popup_4d233b09d726104601cc5ad81ae5dda6.setContent(html_3e17cce0a27df6a6a460d3e3eadeb9b7);
+            
+        
+
+        circle_marker_a4d60e5594543296cf69b0ae24c191c3.bindPopup(popup_4d233b09d726104601cc5ad81ae5dda6)
+        ;
+
+        
+    
+    
+            circle_marker_a4d60e5594543296cf69b0ae24c191c3.bindTooltip(
+                `<div>
+                     D23
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8ba27ef8d1c0a8b94f24f2b9de7d9b32 = L.circleMarker(
+                [65.5, 47.34],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a);
+        
+    
+        var popup_2274de2a49f41115e0ab909ff038f2b5 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_30b618502c0987aee696538b290ec1a1 = $(`<div id="html_30b618502c0987aee696538b290ec1a1" style="width: 100.0%; height: 100.0%;"><b>D32</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>D32</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>9</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>6</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-65.5</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>-47.34</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>41.08</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>31.02</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>106.39</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>05/08/2026</td></tr></table></div>`)[0];
+                popup_2274de2a49f41115e0ab909ff038f2b5.setContent(html_30b618502c0987aee696538b290ec1a1);
+            
+        
+
+        circle_marker_8ba27ef8d1c0a8b94f24f2b9de7d9b32.bindPopup(popup_2274de2a49f41115e0ab909ff038f2b5)
+        ;
+
+        
+    
+    
+            circle_marker_8ba27ef8d1c0a8b94f24f2b9de7d9b32.bindTooltip(
+                `<div>
+                     D32
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6d4bfdf237808422a9ce478b1496ba7d = L.circleMarker(
+                [64.7, 57.31],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a);
+        
+    
+        var popup_b97aec33f61607de2dce92f82f55883e = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_126890bc06eaf11a27343f4cde3b9fbc = $(`<div id="html_126890bc06eaf11a27343f4cde3b9fbc" style="width: 100.0%; height: 100.0%;"><b>D33A</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>D33A</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>34</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>10</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-64.7</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>-57.31</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>255.76</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>193.13</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>662.41</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>05/08/2026</td></tr></table></div>`)[0];
+                popup_b97aec33f61607de2dce92f82f55883e.setContent(html_126890bc06eaf11a27343f4cde3b9fbc);
+            
+        
+
+        circle_marker_6d4bfdf237808422a9ce478b1496ba7d.bindPopup(popup_b97aec33f61607de2dce92f82f55883e)
+        ;
+
+        
+    
+    
+            circle_marker_6d4bfdf237808422a9ce478b1496ba7d.bindTooltip(
+                `<div>
+                     D33A
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_15fb46d8c9a553cc133a7fa36b3300cd = L.circleMarker(
+                [66.06, 53.63],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a);
+        
+    
+        var popup_666cbfdb260c8027e5151c11976fcc05 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_671385b2627763af3876c10714c956e8 = $(`<div id="html_671385b2627763af3876c10714c956e8" style="width: 100.0%; height: 100.0%;"><b>D33B</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>D33B</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>21</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>12</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-66.06</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>-53.63</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>123.81</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>93.49</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>320.68</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>05/08/2026</td></tr></table></div>`)[0];
+                popup_666cbfdb260c8027e5151c11976fcc05.setContent(html_671385b2627763af3876c10714c956e8);
+            
+        
+
+        circle_marker_15fb46d8c9a553cc133a7fa36b3300cd.bindPopup(popup_666cbfdb260c8027e5151c11976fcc05)
+        ;
+
+        
+    
+    
+            circle_marker_15fb46d8c9a553cc133a7fa36b3300cd.bindTooltip(
+                `<div>
+                     D33B
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3c7bc5cce903d8d5607c24473c58d8bd = L.circleMarker(
+                [65.07, 57.35],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a);
+        
+    
+        var popup_b88d3942f214b419a7d57edcc0816600 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_534f22383f61db8689203658523b7ac2 = $(`<div id="html_534f22383f61db8689203658523b7ac2" style="width: 100.0%; height: 100.0%;"><b>D33C</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>D33C</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>15</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>7</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-65.07</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>-57.35</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>89.29</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>67.43</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>231.27</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>05/08/2026</td></tr></table></div>`)[0];
+                popup_b88d3942f214b419a7d57edcc0816600.setContent(html_534f22383f61db8689203658523b7ac2);
+            
+        
+
+        circle_marker_3c7bc5cce903d8d5607c24473c58d8bd.bindPopup(popup_b88d3942f214b419a7d57edcc0816600)
+        ;
+
+        
+    
+    
+            circle_marker_3c7bc5cce903d8d5607c24473c58d8bd.bindTooltip(
+                `<div>
+                     D33C
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1e13fd6bcd81c97a60f4dc894c0fbcd2 = L.circleMarker(
+                [67.16, 82.05],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a);
+        
+    
+        var popup_470e9e2a91da1851e10944571af0d5a3 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_4359d2ff90438dbfa9e55dfdb6b18265 = $(`<div id="html_4359d2ff90438dbfa9e55dfdb6b18265" style="width: 100.0%; height: 100.0%;"><b>D34</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>D34</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>11</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>8</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-67.16</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>82.05</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>64.02</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>48.34</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>165.8</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>05/08/2026</td></tr></table></div>`)[0];
+                popup_470e9e2a91da1851e10944571af0d5a3.setContent(html_4359d2ff90438dbfa9e55dfdb6b18265);
+            
+        
+
+        circle_marker_1e13fd6bcd81c97a60f4dc894c0fbcd2.bindPopup(popup_470e9e2a91da1851e10944571af0d5a3)
+        ;
+
+        
+    
+    
+            circle_marker_1e13fd6bcd81c97a60f4dc894c0fbcd2.bindTooltip(
+                `<div>
+                     D34
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e5ec2ba2e72098be81feacff64f76927 = L.circleMarker(
+                [64.33, 48.79],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a);
+        
+    
+        var popup_831d93802eb414d97d90ced68fdf9264 = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_6dc8025bd9e05c402280e33348db68dc = $(`<div id="html_6dc8025bd9e05c402280e33348db68dc" style="width: 100.0%; height: 100.0%;"><b>D35</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>D35</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>28</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>6</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-64.33</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>-48.79</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>140.18</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>105.85</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>363.06</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>05/08/2026</td></tr></table></div>`)[0];
+                popup_831d93802eb414d97d90ced68fdf9264.setContent(html_6dc8025bd9e05c402280e33348db68dc);
+            
+        
+
+        circle_marker_e5ec2ba2e72098be81feacff64f76927.bindPopup(popup_831d93802eb414d97d90ced68fdf9264)
+        ;
+
+        
+    
+    
+            circle_marker_e5ec2ba2e72098be81feacff64f76927.bindTooltip(
+                `<div>
+                     D35
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_95b6bdffc16a9273f70c73de025d0872 = L.circleMarker(
+                [69.21, 36.35],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#3388ff", "fillOpacity": 0.8, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 6, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a);
+        
+    
+        var popup_fd63745cc7fb83ac5e2ca307a129ca9a = L.popup({
+  "maxWidth": 420,
+});
+
+        
+            
+                var html_9b4bd4cf7780bec22b776c76a3ba52d4 = $(`<div id="html_9b4bd4cf7780bec22b776c76a3ba52d4" style="width: 100.0%; height: 100.0%;"><b>D37</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>D37</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>30</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>7</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-69.21</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>36.35</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>184.47</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>139.29</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>477.77</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>05/08/2026</td></tr></table></div>`)[0];
+                popup_fd63745cc7fb83ac5e2ca307a129ca9a.setContent(html_9b4bd4cf7780bec22b776c76a3ba52d4);
+            
+        
+
+        circle_marker_95b6bdffc16a9273f70c73de025d0872.bindPopup(popup_fd63745cc7fb83ac5e2ca307a129ca9a)
+        ;
+
+        
+    
+    
+            circle_marker_95b6bdffc16a9273f70c73de025d0872.bindTooltip(
+                `<div>
+                     D37
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a.addTo(map_1ca1d134ec754a2a5872944add72482d);
+        
+    
+            var tile_layer_d3da2508794b4d9e649429839c9480bb = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detect_retina": false, "max_native_zoom": 19, "max_zoom": 19, "min_zoom": 0, "no_wrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+            var mini_map_9a763fad8b8b46c059c05989d499a2b4 = new L.Control.MiniMap(
+                tile_layer_d3da2508794b4d9e649429839c9480bb,
+                {
+  "position": "bottomright",
+  "width": 150,
+  "height": 150,
+  "collapsedWidth": 25,
+  "collapsedHeight": 25,
+  "zoomLevelOffset": -5,
+  "centerFixed": false,
+  "zoomAnimation": false,
+  "toggleDisplay": true,
+  "autoToggleDisplay": false,
+  "minimized": false,
+}
+            );
+            map_1ca1d134ec754a2a5872944add72482d.addControl(mini_map_9a763fad8b8b46c059c05989d499a2b4);
+        
+    
+            var measure_control_1294ee28f050371048549340277609e4 = new L.Control.Measure(
+                {
+  "position": "topleft",
+  "primaryLengthUnit": "meters",
+  "secondaryLengthUnit": "miles",
+  "primaryAreaUnit": "sqmeters",
+  "secondaryAreaUnit": "acres",
+});
+            map_1ca1d134ec754a2a5872944add72482d.addControl(measure_control_1294ee28f050371048549340277609e4);
+
+            // Workaround for using this plugin with Leaflet>=1.8.0
+            // https://github.com/ljagis/leaflet-measure/issues/171
+            L.Control.Measure.include({
+                _setCaptureMarkerIcon: function () {
+                    // disable autopan
+                    this._captureMarker.options.autoPanOnFocus = false;
+                    // default function
+                    this._captureMarker.setIcon(
+                        L.divIcon({
+                            iconSize: this._map.getSize().multiplyBy(2)
+                        })
+                    );
+                },
+            });
+
+        
+    
+            var layer_control_e77a4ec67f9b1dcd50c00587d637b6f6_layers = {
+                base_layers : {
+                    "cartodbpositron" : tile_layer_b0f42feb69fc54fb6d3050490fcdb188,
+                    "OpenStreetMap" : tile_layer_95af5b2dfee01d03dd6b0740d05590a9,
+                    "Esri World Imagery" : tile_layer_62a71e6b1d9d0b0944bae077357feb38,
+                },
+                overlays :  {
+                    "USNIC Antarctic icebergs" : marker_cluster_bd214a8dddd7bcbbc73f6c51f27e1d0a,
+                },
+            };
+            let layer_control_e77a4ec67f9b1dcd50c00587d637b6f6 = L.control.layers(
+                layer_control_e77a4ec67f9b1dcd50c00587d637b6f6_layers.base_layers,
+                layer_control_e77a4ec67f9b1dcd50c00587d637b6f6_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": true,
+  "autoZIndex": true,
+}
+            ).addTo(map_1ca1d134ec754a2a5872944add72482d);
+
+        
+</script>
+</html>

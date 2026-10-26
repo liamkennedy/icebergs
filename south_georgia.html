@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_f3506b21eed0c0f9a704abfc07eba899 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-dvf/0.3.0/leaflet-dvf.markers.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.css"/>
+    <script src="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.css"/>
+</head>
+<body>
+    
+    
+    <div style="position: fixed; top: 10px; left: 50px; z-index: 9999; background: white;
+                padding: 8px 12px; border: 1px solid #999; border-radius: 6px;
+                font-family: Arial, sans-serif; font-size: 14px;">
+      <b>USNIC Antarctic Icebergs</b><br>1 mapped positions<br>Filter: latitude north of -60.0°<br>
+      Markers: yellow triangle. Hover for size/area. Click for full CSV details.
+    </div>
+    
+    
+            <div class="folium-map" id="map_f3506b21eed0c0f9a704abfc07eba899" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_f3506b21eed0c0f9a704abfc07eba899 = L.map(
+                "map_f3506b21eed0c0f9a704abfc07eba899",
+                {
+                    center: [-54.43, -36.59],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 5,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_f3506b21eed0c0f9a704abfc07eba899);
+
+            
+
+        
+    
+            var tile_layer_64493170404b87eb7873ba2d6a188a6a = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_64493170404b87eb7873ba2d6a188a6a.addTo(map_f3506b21eed0c0f9a704abfc07eba899);
+        
+    
+            var tile_layer_707dfd9e3d21f0a2287de54f5c25c8c9 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_707dfd9e3d21f0a2287de54f5c25c8c9.addTo(map_f3506b21eed0c0f9a704abfc07eba899);
+        
+    
+            var tile_layer_cdbd710cc019a01dfc6afdeb19be82b0 = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "Esri",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_cdbd710cc019a01dfc6afdeb19be82b0.addTo(map_f3506b21eed0c0f9a704abfc07eba899);
+        
+    
+            var marker_77cdb1ac91f40776d4fb92c251360a2f = L.marker(
+                [-54.43, -36.59],
+                {
+}
+            ).addTo(map_f3506b21eed0c0f9a704abfc07eba899);
+        
+    
+            var icon_8db586accd149b7b9336773a8f77ba09 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "star",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_232cd1acf52a910e5663d5c6fe1d4300 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_a1ad4159ba03ee231c3be58d2d053cf8 = $(`<div id="html_a1ad4159ba03ee231c3be58d2d053cf8" style="width: 100.0%; height: 100.0%;">South Georgia</div>`)[0];
+                popup_232cd1acf52a910e5663d5c6fe1d4300.setContent(html_a1ad4159ba03ee231c3be58d2d053cf8);
+            
+        
+
+        marker_77cdb1ac91f40776d4fb92c251360a2f.bindPopup(popup_232cd1acf52a910e5663d5c6fe1d4300)
+        ;
+
+        
+    
+    
+            marker_77cdb1ac91f40776d4fb92c251360a2f.bindTooltip(
+                `<div>
+                     South Georgia
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_77cdb1ac91f40776d4fb92c251360a2f.setIcon(icon_8db586accd149b7b9336773a8f77ba09);
+            
+    
+            var feature_group_613b28bd68efb78c4314733eab2c17c2 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var regular_polygon_marker_22da34df64d660d8564bc5e02135fe0f = new L.RegularPolygonMarker(
+                [-52.65, -32.32],
+                {
+  "stroke": true,
+  "color": "black",
+  "weight": 1.5,
+  "opacity": 1.0,
+  "lineCap": "round",
+  "lineJoin": "round",
+  "dashArray": null,
+  "dashOffset": null,
+  "fill": true,
+  "fillColor": "yellow",
+  "fillOpacity": 0.9,
+  "fillRule": "evenodd",
+  "bubblingMouseEvents": true,
+  "radius": 8.13310952602064,
+  "numberOfSides": 3,
+  "rotation": 30,
+}
+            ).addTo(feature_group_613b28bd68efb78c4314733eab2c17c2);
+        
+    
+        var popup_f431a346483fd8cc25343a46268dd690 = L.popup({
+  "maxWidth": 460,
+});
+
+        
+            
+                var html_d4299c883f6ac97ce1a56aabe60b6004 = $(`<div id="html_d4299c883f6ac97ce1a56aabe60b6004" style="width: 100.0%; height: 100.0%;"><b>A76C</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>A76C</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>16</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>7</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-52.65</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>-32.32</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>112.44</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>84.9</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>291.21</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>07/03/2026</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Latitude</th><td>-52.65000</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Longitude</th><td>-32.32000</td></tr><tr><th style='text-align:left;padding-right:8px'>Distance to South Georgia</th><td>186.0 NM</td></tr></table></div>`)[0];
+                popup_f431a346483fd8cc25343a46268dd690.setContent(html_d4299c883f6ac97ce1a56aabe60b6004);
+            
+        
+
+        regular_polygon_marker_22da34df64d660d8564bc5e02135fe0f.bindPopup(popup_f431a346483fd8cc25343a46268dd690)
+        ;
+
+        
+    
+    
+            regular_polygon_marker_22da34df64d660d8564bc5e02135fe0f.bindTooltip(
+                `<div>
+                     <b>A76C</b><br>Lat/Lon: -52.650, -32.320<br>Length: 16 NM<br>Width: 7 NM<br>Area: 291.21 sq km<br>Distance to South Georgia: 186 NM<br>Last update: 07/03/2026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_613b28bd68efb78c4314733eab2c17c2.addTo(map_f3506b21eed0c0f9a704abfc07eba899);
+        
+    
+            var tile_layer_efa1f382bc450de77adc90a2b91241eb = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detect_retina": false, "max_native_zoom": 19, "max_zoom": 19, "min_zoom": 0, "no_wrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+            var mini_map_62106d057e8fa395755409386896efef = new L.Control.MiniMap(
+                tile_layer_efa1f382bc450de77adc90a2b91241eb,
+                {
+  "position": "bottomright",
+  "width": 150,
+  "height": 150,
+  "collapsedWidth": 25,
+  "collapsedHeight": 25,
+  "zoomLevelOffset": -5,
+  "centerFixed": false,
+  "zoomAnimation": false,
+  "toggleDisplay": true,
+  "autoToggleDisplay": false,
+  "minimized": false,
+}
+            );
+            map_f3506b21eed0c0f9a704abfc07eba899.addControl(mini_map_62106d057e8fa395755409386896efef);
+        
+    
+            var measure_control_aea083e467f88d357b3418d6d1e81d11 = new L.Control.Measure(
+                {
+  "position": "topleft",
+  "primaryLengthUnit": "meters",
+  "secondaryLengthUnit": "miles",
+  "primaryAreaUnit": "sqmeters",
+  "secondaryAreaUnit": "acres",
+});
+            map_f3506b21eed0c0f9a704abfc07eba899.addControl(measure_control_aea083e467f88d357b3418d6d1e81d11);
+
+            // Workaround for using this plugin with Leaflet>=1.8.0
+            // https://github.com/ljagis/leaflet-measure/issues/171
+            L.Control.Measure.include({
+                _setCaptureMarkerIcon: function () {
+                    // disable autopan
+                    this._captureMarker.options.autoPanOnFocus = false;
+                    // default function
+                    this._captureMarker.setIcon(
+                        L.divIcon({
+                            iconSize: this._map.getSize().multiplyBy(2)
+                        })
+                    );
+                },
+            });
+
+        
+    
+            var layer_control_5c2a54563eb01a63375c65acaa00a082_layers = {
+                base_layers : {
+                    "cartodbpositron" : tile_layer_64493170404b87eb7873ba2d6a188a6a,
+                    "OpenStreetMap" : tile_layer_707dfd9e3d21f0a2287de54f5c25c8c9,
+                    "Esri World Imagery" : tile_layer_cdbd710cc019a01dfc6afdeb19be82b0,
+                },
+                overlays :  {
+                    "USNIC Antarctic icebergs" : feature_group_613b28bd68efb78c4314733eab2c17c2,
+                },
+            };
+            let layer_control_5c2a54563eb01a63375c65acaa00a082 = L.control.layers(
+                layer_control_5c2a54563eb01a63375c65acaa00a082_layers.base_layers,
+                layer_control_5c2a54563eb01a63375c65acaa00a082_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": true,
+  "autoZIndex": true,
+}
+            ).addTo(map_f3506b21eed0c0f9a704abfc07eba899);
+
+        
+</script>
+</html>

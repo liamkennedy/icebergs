@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_8a8ff45791f87e90e48413bd2f7e5cea {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.css"/>
+    <script src="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/ljagis/leaflet-measure@2.1.7/dist/leaflet-measure.min.css"/>
+</head>
+<body>
+    
+    
+    <div style="position: fixed; top: 10px; left: 50px; z-index: 9999; background: white;
+                padding: 8px 12px; border: 1px solid #999; border-radius: 6px;
+                font-family: Arial, sans-serif; font-size: 14px;">
+      <b>USNIC Antarctic Icebergs</b><br>33 mapped positions<br>
+      Markers: yellow circle. Hover for size/area. Click for full CSV details.
+    </div>
+    
+    
+            <div class="folium-map" id="map_8a8ff45791f87e90e48413bd2f7e5cea" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_8a8ff45791f87e90e48413bd2f7e5cea = L.map(
+                "map_8a8ff45791f87e90e48413bd2f7e5cea",
+                {
+                    center: [-66.03757575757575, 39.623030303030305],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 3,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_8a8ff45791f87e90e48413bd2f7e5cea);
+
+            
+
+        
+    
+            var tile_layer_30128300baec5e59f7d93f04ba492a94 = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_30128300baec5e59f7d93f04ba492a94.addTo(map_8a8ff45791f87e90e48413bd2f7e5cea);
+        
+    
+            var tile_layer_9677b5d0891b90ec0b9786e25c4dff9c = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_9677b5d0891b90ec0b9786e25c4dff9c.addTo(map_8a8ff45791f87e90e48413bd2f7e5cea);
+        
+    
+            var tile_layer_2fed34b29dfad90b7841186d1bdd2f24 = L.tileLayer(
+                "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
+                {
+  "minZoom": 0,
+  "maxZoom": 18,
+  "maxNativeZoom": 18,
+  "noWrap": false,
+  "attribution": "Esri",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_2fed34b29dfad90b7841186d1bdd2f24.addTo(map_8a8ff45791f87e90e48413bd2f7e5cea);
+        
+    
+            var marker_fdce1b4878b3b499e9d648abd3766508 = L.marker(
+                [-54.43, -36.59],
+                {
+}
+            ).addTo(map_8a8ff45791f87e90e48413bd2f7e5cea);
+        
+    
+            var icon_7f4d32dc6efcce09ec57ead4403416ed = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "star",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5e06d68145fd55d748e035a0a99200a8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_84f570cb904761b6d31f03e46c742b19 = $(`<div id="html_84f570cb904761b6d31f03e46c742b19" style="width: 100.0%; height: 100.0%;">South Georgia</div>`)[0];
+                popup_5e06d68145fd55d748e035a0a99200a8.setContent(html_84f570cb904761b6d31f03e46c742b19);
+            
+        
+
+        marker_fdce1b4878b3b499e9d648abd3766508.bindPopup(popup_5e06d68145fd55d748e035a0a99200a8)
+        ;
+
+        
+    
+    
+            marker_fdce1b4878b3b499e9d648abd3766508.bindTooltip(
+                `<div>
+                     South Georgia
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_fdce1b4878b3b499e9d648abd3766508.setIcon(icon_7f4d32dc6efcce09ec57ead4403416ed);
+            
+    
+            var marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a = L.markerClusterGroup(
+                {
+}
+            );
+        
+    
+            var circle_marker_4c68cd925dfda284cad2e17139cef45a = L.circleMarker(
+                [-52.65, -32.32],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.13310952602064, "stroke": true, "weight": 1.5}
+            ).addTo(marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a);
+        
+    
+        var popup_203b421a5ab5fcb5ae3bd6cb8834ee36 = L.popup({
+  "maxWidth": 460,
+});
+
+        
+            
+                var html_736875b678595c36ab7d1e5fef1d6600 = $(`<div id="html_736875b678595c36ab7d1e5fef1d6600" style="width: 100.0%; height: 100.0%;"><b>A76C</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>A76C</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>16</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>7</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-52.65</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>-32.32</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>112.44</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>84.9</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>291.21</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>07/03/2026</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Latitude</th><td>-52.65000</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Longitude</th><td>-32.32000</td></tr><tr><th style='text-align:left;padding-right:8px'>Distance to South Georgia</th><td>186.0 NM</td></tr></table></div>`)[0];
+                popup_203b421a5ab5fcb5ae3bd6cb8834ee36.setContent(html_736875b678595c36ab7d1e5fef1d6600);
+            
+        
+
+        circle_marker_4c68cd925dfda284cad2e17139cef45a.bindPopup(popup_203b421a5ab5fcb5ae3bd6cb8834ee36)
+        ;
+
+        
+    
+    
+            circle_marker_4c68cd925dfda284cad2e17139cef45a.bindTooltip(
+                `<div>
+                     <b>A76C</b><br>Lat/Lon: -52.650, -32.320<br>Length: 16 NM<br>Width: 7 NM<br>Area: 291.21 sq km<br>Distance to South Georgia: 186 NM<br>Last update: 07/03/2026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_29a99375ac99f54f2fe9f09d2e9d67ab = L.circleMarker(
+                [-61.86, -53.25],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.698254330067712, "stroke": true, "weight": 1.5}
+            ).addTo(marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a);
+        
+    
+        var popup_40fc3b24a9ad053dcb9e2cf387ab2d47 = L.popup({
+  "maxWidth": 460,
+});
+
+        
+            
+                var html_c1bc2ed2629337a7a48072c980e21bc5 = $(`<div id="html_c1bc2ed2629337a7a48072c980e21bc5" style="width: 100.0%; height: 100.0%;"><b>A81</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>A81</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>28</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>25</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-61.86</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>-53.25</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>545.45</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>411.88</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>1412.71</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>07/03/2026</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Latitude</th><td>-61.86000</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Longitude</th><td>-53.25000</td></tr><tr><th style='text-align:left;padding-right:8px'>Distance to South Georgia</th><td>687.7 NM</td></tr></table></div>`)[0];
+                popup_40fc3b24a9ad053dcb9e2cf387ab2d47.setContent(html_c1bc2ed2629337a7a48072c980e21bc5);
+            
+        
+
+        circle_marker_29a99375ac99f54f2fe9f09d2e9d67ab.bindPopup(popup_40fc3b24a9ad053dcb9e2cf387ab2d47)
+        ;
+
+        
+    
+    
+            circle_marker_29a99375ac99f54f2fe9f09d2e9d67ab.bindTooltip(
+                `<div>
+                     <b>A81</b><br>Lat/Lon: -61.860, -53.250<br>Length: 28 NM<br>Width: 25 NM<br>Area: 1412.71 sq km<br>Distance to South Georgia: 688 NM<br>Last update: 07/03/2026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d6c55a639271999a18c187b3f5dfca6a = L.circleMarker(
+                [-63.54, -51.39],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 1.5}
+            ).addTo(marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a);
+        
+    
+        var popup_da8ad641e002d01f836525684b86a494 = L.popup({
+  "maxWidth": 460,
+});
+
+        
+            
+                var html_5f82d9d9477bafe96899bec428e53062 = $(`<div id="html_5f82d9d9477bafe96899bec428e53062" style="width: 100.0%; height: 100.0%;"><b>A83</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>A83</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>12</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>7</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-63.54</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>-51.39</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>73.29</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>55.34</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>189.82</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>07/03/2026</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Latitude</th><td>-63.54000</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Longitude</th><td>-51.39000</td></tr><tr><th style='text-align:left;padding-right:8px'>Distance to South Georgia</th><td>709.8 NM</td></tr></table></div>`)[0];
+                popup_da8ad641e002d01f836525684b86a494.setContent(html_5f82d9d9477bafe96899bec428e53062);
+            
+        
+
+        circle_marker_d6c55a639271999a18c187b3f5dfca6a.bindPopup(popup_da8ad641e002d01f836525684b86a494)
+        ;
+
+        
+    
+    
+            circle_marker_d6c55a639271999a18c187b3f5dfca6a.bindTooltip(
+                `<div>
+                     <b>A83</b><br>Lat/Lon: -63.540, -51.390<br>Length: 12 NM<br>Width: 7 NM<br>Area: 189.82 sq km<br>Distance to South Georgia: 710 NM<br>Last update: 07/03/2026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_66ac4f5e33ba5d7ec03da1dfcb4bcf3e = L.circleMarker(
+                [-72.52, -108.01],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 1.5}
+            ).addTo(marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a);
+        
+    
+        var popup_61caf9fba149e8b1165658bd53d4cb1c = L.popup({
+  "maxWidth": 460,
+});
+
+        
+            
+                var html_c61ebd1d902d42c4bdc66705663a7ba6 = $(`<div id="html_c61ebd1d902d42c4bdc66705663a7ba6" style="width: 100.0%; height: 100.0%;"><b>A84</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>A84</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>12</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>6</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-72.52</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>-108.01</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>76.06</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>57.43</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>196.99</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>07/03/2026</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Latitude</th><td>-72.52000</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Longitude</th><td>-108.01000</td></tr><tr><th style='text-align:left;padding-right:8px'>Distance to South Georgia</th><td>2026.1 NM</td></tr></table></div>`)[0];
+                popup_61caf9fba149e8b1165658bd53d4cb1c.setContent(html_c61ebd1d902d42c4bdc66705663a7ba6);
+            
+        
+
+        circle_marker_66ac4f5e33ba5d7ec03da1dfcb4bcf3e.bindPopup(popup_61caf9fba149e8b1165658bd53d4cb1c)
+        ;
+
+        
+    
+    
+            circle_marker_66ac4f5e33ba5d7ec03da1dfcb4bcf3e.bindTooltip(
+                `<div>
+                     <b>A84</b><br>Lat/Lon: -72.520, -108.010<br>Length: 12 NM<br>Width: 6 NM<br>Area: 196.99 sq km<br>Distance to South Georgia: 2026 NM<br>Last update: 07/03/2026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e2d18410cc579f5c4810cd089a1ca2e5 = L.circleMarker(
+                [-66.06, -54.3],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 1.5}
+            ).addTo(marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a);
+        
+    
+        var popup_172bea8f3d704a3a1b8b94db420f3921 = L.popup({
+  "maxWidth": 460,
+});
+
+        
+            
+                var html_85323771d75c62b72e5bae7f201f54e2 = $(`<div id="html_85323771d75c62b72e5bae7f201f54e2" style="width: 100.0%; height: 100.0%;"><b>A85</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>A85</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>10</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>3</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-66.06</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>-54.3</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>24.18</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>18.26</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>62.62</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>07/03/2026</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Latitude</th><td>-66.06000</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Longitude</th><td>-54.30000</td></tr><tr><th style='text-align:left;padding-right:8px'>Distance to South Georgia</th><td>868.7 NM</td></tr></table></div>`)[0];
+                popup_172bea8f3d704a3a1b8b94db420f3921.setContent(html_85323771d75c62b72e5bae7f201f54e2);
+            
+        
+
+        circle_marker_e2d18410cc579f5c4810cd089a1ca2e5.bindPopup(popup_172bea8f3d704a3a1b8b94db420f3921)
+        ;
+
+        
+    
+    
+            circle_marker_e2d18410cc579f5c4810cd089a1ca2e5.bindTooltip(
+                `<div>
+                     <b>A85</b><br>Lat/Lon: -66.060, -54.300<br>Length: 10 NM<br>Width: 3 NM<br>Area: 62.62 sq km<br>Distance to South Georgia: 869 NM<br>Last update: 07/03/2026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1a1302b06c00c95656f5382749166392 = L.circleMarker(
+                [-66.08, 143.23],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.819962322443335, "stroke": true, "weight": 1.5}
+            ).addTo(marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a);
+        
+    
+        var popup_c239466dd890d6412be96cd50a38e5ff = L.popup({
+  "maxWidth": 460,
+});
+
+        
+            
+                var html_2776b38a13379195d7bde484dd6b6809 = $(`<div id="html_2776b38a13379195d7bde484dd6b6809" style="width: 100.0%; height: 100.0%;"><b>B09B</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>B09B</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>27</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>10</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-66.08</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>143.23</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>196.5</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>148.38</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>508.94</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>07/03/2026</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Latitude</th><td>-66.08000</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Longitude</th><td>143.23000</td></tr><tr><th style='text-align:left;padding-right:8px'>Distance to South Georgia</th><td>3571.8 NM</td></tr></table></div>`)[0];
+                popup_c239466dd890d6412be96cd50a38e5ff.setContent(html_2776b38a13379195d7bde484dd6b6809);
+            
+        
+
+        circle_marker_1a1302b06c00c95656f5382749166392.bindPopup(popup_c239466dd890d6412be96cd50a38e5ff)
+        ;
+
+        
+    
+    
+            circle_marker_1a1302b06c00c95656f5382749166392.bindTooltip(
+                `<div>
+                     <b>B09B</b><br>Lat/Lon: -66.080, 143.230<br>Length: 27 NM<br>Width: 10 NM<br>Area: 508.94 sq km<br>Distance to South Georgia: 3572 NM<br>Last update: 07/03/2026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_786ad85bd60a710632780bf561cb9d4f = L.circleMarker(
+                [-68.18, 41.51],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 1.5}
+            ).addTo(marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a);
+        
+    
+        var popup_4928a848a0be86e19203a2d0ce77d6bf = L.popup({
+  "maxWidth": 460,
+});
+
+        
+            
+                var html_a531d1344e91ca5e3e20638567346b13 = $(`<div id="html_a531d1344e91ca5e3e20638567346b13" style="width: 100.0%; height: 100.0%;"><b>B09G</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>B09G</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>12</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>7</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-68.18</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>41.51</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>61.8</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>46.66</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>160.06</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>07/03/2026</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Latitude</th><td>-68.18000</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Longitude</th><td>41.51000</td></tr><tr><th style='text-align:left;padding-right:8px'>Distance to South Georgia</th><td>2215.3 NM</td></tr></table></div>`)[0];
+                popup_4928a848a0be86e19203a2d0ce77d6bf.setContent(html_a531d1344e91ca5e3e20638567346b13);
+            
+        
+
+        circle_marker_786ad85bd60a710632780bf561cb9d4f.bindPopup(popup_4928a848a0be86e19203a2d0ce77d6bf)
+        ;
+
+        
+    
+    
+            circle_marker_786ad85bd60a710632780bf561cb9d4f.bindTooltip(
+                `<div>
+                     <b>B09G</b><br>Lat/Lon: -68.180, 41.510<br>Length: 12 NM<br>Width: 7 NM<br>Area: 160.06 sq km<br>Distance to South Georgia: 2215 NM<br>Last update: 07/03/2026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c5a4845515f807fce3b01d08a88c2029 = L.circleMarker(
+                [-69.18, 174.74],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10.715549411256339, "stroke": true, "weight": 1.5}
+            ).addTo(marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a);
+        
+    
+        var popup_a7ac9a3d7958d5c1968e2623ae62b24d = L.popup({
+  "maxWidth": 460,
+});
+
+        
+            
+                var html_d26d2167c557c7ac94c03e32ee2e74ef = $(`<div id="html_d26d2167c557c7ac94c03e32ee2e74ef" style="width: 100.0%; height: 100.0%;"><b>B22A</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>B22A</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>29</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>25</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-69.18</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>174.74</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>549.47</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>414.92</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>1423.13</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>07/03/2026</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Latitude</th><td>-69.18000</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Longitude</th><td>174.74000</td></tr><tr><th style='text-align:left;padding-right:8px'>Distance to South Georgia</th><td>3259.6 NM</td></tr></table></div>`)[0];
+                popup_a7ac9a3d7958d5c1968e2623ae62b24d.setContent(html_d26d2167c557c7ac94c03e32ee2e74ef);
+            
+        
+
+        circle_marker_c5a4845515f807fce3b01d08a88c2029.bindPopup(popup_a7ac9a3d7958d5c1968e2623ae62b24d)
+        ;
+
+        
+    
+    
+            circle_marker_c5a4845515f807fce3b01d08a88c2029.bindTooltip(
+                `<div>
+                     <b>B22A</b><br>Lat/Lon: -69.180, 174.740<br>Length: 29 NM<br>Width: 25 NM<br>Area: 1423.13 sq km<br>Distance to South Georgia: 3260 NM<br>Last update: 07/03/2026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0b55d2f23e84171f698c2fbfa7a10252 = L.circleMarker(
+                [-66.58, 179.34],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 1.5}
+            ).addTo(marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a);
+        
+    
+        var popup_8f7c3383e524c4bc7a41a389c26aab54 = L.popup({
+  "maxWidth": 460,
+});
+
+        
+            
+                var html_e186cdd2497f1ab74aaec5a2e3c8612a = $(`<div id="html_e186cdd2497f1ab74aaec5a2e3c8612a" style="width: 100.0%; height: 100.0%;"><b>B22F</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>B22F</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>14</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>7</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-66.58</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>179.34</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>91.64</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>69.2</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>237.35</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>07/03/2026</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Latitude</th><td>-66.58000</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Longitude</th><td>179.34000</td></tr><tr><th style='text-align:left;padding-right:8px'>Distance to South Georgia</th><td>3362.3 NM</td></tr></table></div>`)[0];
+                popup_8f7c3383e524c4bc7a41a389c26aab54.setContent(html_e186cdd2497f1ab74aaec5a2e3c8612a);
+            
+        
+
+        circle_marker_0b55d2f23e84171f698c2fbfa7a10252.bindPopup(popup_8f7c3383e524c4bc7a41a389c26aab54)
+        ;
+
+        
+    
+    
+            circle_marker_0b55d2f23e84171f698c2fbfa7a10252.bindTooltip(
+                `<div>
+                     <b>B22F</b><br>Lat/Lon: -66.580, 179.340<br>Length: 14 NM<br>Width: 7 NM<br>Area: 237.35 sq km<br>Distance to South Georgia: 3362 NM<br>Last update: 07/03/2026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b5f823c7f24c98729c98d54b263b8d50 = L.circleMarker(
+                [-70.22, 164.18],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 1.5}
+            ).addTo(marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a);
+        
+    
+        var popup_947c3310c7f55428d34ffb9eee82c1f0 = L.popup({
+  "maxWidth": 460,
+});
+
+        
+            
+                var html_7bd3ff0424debe06b3451ce28e6d5a62 = $(`<div id="html_7bd3ff0424debe06b3451ce28e6d5a62" style="width: 100.0%; height: 100.0%;"><b>B22H</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>B22H</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>8</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>6</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-70.22</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>164.18</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>29.37</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>22.18</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>76.06</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>07/03/2026</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Latitude</th><td>-70.22000</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Longitude</th><td>164.18000</td></tr><tr><th style='text-align:left;padding-right:8px'>Distance to South Georgia</th><td>3269.4 NM</td></tr></table></div>`)[0];
+                popup_947c3310c7f55428d34ffb9eee82c1f0.setContent(html_7bd3ff0424debe06b3451ce28e6d5a62);
+            
+        
+
+        circle_marker_b5f823c7f24c98729c98d54b263b8d50.bindPopup(popup_947c3310c7f55428d34ffb9eee82c1f0)
+        ;
+
+        
+    
+    
+            circle_marker_b5f823c7f24c98729c98d54b263b8d50.bindTooltip(
+                `<div>
+                     <b>B22H</b><br>Lat/Lon: -70.220, 164.180<br>Length: 8 NM<br>Width: 6 NM<br>Area: 76.06 sq km<br>Distance to South Georgia: 3269 NM<br>Last update: 07/03/2026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_36f3e5644302e215ac7c3f15d9a588d4 = L.circleMarker(
+                [-74.21, -131.74],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 1.5}
+            ).addTo(marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a);
+        
+    
+        var popup_7dafbe6a534cd833cf80e4cffbd64e25 = L.popup({
+  "maxWidth": 460,
+});
+
+        
+            
+                var html_08cb7147ee28663e5e94eb9bba2a630d = $(`<div id="html_08cb7147ee28663e5e94eb9bba2a630d" style="width: 100.0%; height: 100.0%;"><b>B51</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>B51</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>16</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>3</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-74.21</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>-131.74</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>31.48</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>23.77</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>81.52</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>07/03/2026</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Latitude</th><td>-74.21000</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Longitude</th><td>-131.74000</td></tr><tr><th style='text-align:left;padding-right:8px'>Distance to South Georgia</th><td>2388.4 NM</td></tr></table></div>`)[0];
+                popup_7dafbe6a534cd833cf80e4cffbd64e25.setContent(html_08cb7147ee28663e5e94eb9bba2a630d);
+            
+        
+
+        circle_marker_36f3e5644302e215ac7c3f15d9a588d4.bindPopup(popup_7dafbe6a534cd833cf80e4cffbd64e25)
+        ;
+
+        
+    
+    
+            circle_marker_36f3e5644302e215ac7c3f15d9a588d4.bindTooltip(
+                `<div>
+                     <b>B51</b><br>Lat/Lon: -74.210, -131.740<br>Length: 16 NM<br>Width: 3 NM<br>Area: 81.52 sq km<br>Distance to South Georgia: 2388 NM<br>Last update: 07/03/2026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_cfb18bba303edf87c4ff0d857dc8cf97 = L.circleMarker(
+                [-65.84, 143.02],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 1.5}
+            ).addTo(marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a);
+        
+    
+        var popup_e8e4cb201be894509c900e400c16e63d = L.popup({
+  "maxWidth": 460,
+});
+
+        
+            
+                var html_8b4019af9457ee505329512d1f77639f = $(`<div id="html_8b4019af9457ee505329512d1f77639f" style="width: 100.0%; height: 100.0%;"><b>C15</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>C15</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>14</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>10</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-65.84</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>143.02</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>82.44</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>62.25</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>213.53</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>07/03/2026</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Latitude</th><td>-65.84000</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Longitude</th><td>143.02000</td></tr><tr><th style='text-align:left;padding-right:8px'>Distance to South Georgia</th><td>3586.2 NM</td></tr></table></div>`)[0];
+                popup_e8e4cb201be894509c900e400c16e63d.setContent(html_8b4019af9457ee505329512d1f77639f);
+            
+        
+
+        circle_marker_cfb18bba303edf87c4ff0d857dc8cf97.bindPopup(popup_e8e4cb201be894509c900e400c16e63d)
+        ;
+
+        
+    
+    
+            circle_marker_cfb18bba303edf87c4ff0d857dc8cf97.bindTooltip(
+                `<div>
+                     <b>C15</b><br>Lat/Lon: -65.840, 143.020<br>Length: 14 NM<br>Width: 10 NM<br>Area: 213.53 sq km<br>Distance to South Georgia: 3586 NM<br>Last update: 07/03/2026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b48c52d1940a6531360499826c9ed659 = L.circleMarker(
+                [-67.04, 47.37],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 1.5}
+            ).addTo(marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a);
+        
+    
+        var popup_82af582e7f4b91273c56018cbd6c0f2d = L.popup({
+  "maxWidth": 460,
+});
+
+        
+            
+                var html_e48831b3ed721590628db0bf2e221c08 = $(`<div id="html_e48831b3ed721590628db0bf2e221c08" style="width: 100.0%; height: 100.0%;"><b>C18B</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>C18B</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>10</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>4</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-67.04</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>47.37</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>42.63</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>32.19</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>110.4</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>07/03/2026</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Latitude</th><td>-67.04000</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Longitude</th><td>47.37000</td></tr><tr><th style='text-align:left;padding-right:8px'>Distance to South Georgia</th><td>2365.0 NM</td></tr></table></div>`)[0];
+                popup_82af582e7f4b91273c56018cbd6c0f2d.setContent(html_e48831b3ed721590628db0bf2e221c08);
+            
+        
+
+        circle_marker_b48c52d1940a6531360499826c9ed659.bindPopup(popup_82af582e7f4b91273c56018cbd6c0f2d)
+        ;
+
+        
+    
+    
+            circle_marker_b48c52d1940a6531360499826c9ed659.bindTooltip(
+                `<div>
+                     <b>C18B</b><br>Lat/Lon: -67.040, 47.370<br>Length: 10 NM<br>Width: 4 NM<br>Area: 110.4 sq km<br>Distance to South Georgia: 2365 NM<br>Last update: 07/03/2026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6ee6f7db07fe2b3efcdffe779eeaebf9 = L.circleMarker(
+                [-68.47, 39.07],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 1.5}
+            ).addTo(marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a);
+        
+    
+        var popup_dad32a3b129a7e47c3d873bcecf89734 = L.popup({
+  "maxWidth": 460,
+});
+
+        
+            
+                var html_a9e5d658fe3e8a7723948dc67bb7bae6 = $(`<div id="html_a9e5d658fe3e8a7723948dc67bb7bae6" style="width: 100.0%; height: 100.0%;"><b>C18C</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>C18C</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>10</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>2</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-68.47</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>39.07</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>20.49</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>15.47</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>53.07</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>07/03/2026</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Latitude</th><td>-68.47000</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Longitude</th><td>39.07000</td></tr><tr><th style='text-align:left;padding-right:8px'>Distance to South Georgia</th><td>2158.5 NM</td></tr></table></div>`)[0];
+                popup_dad32a3b129a7e47c3d873bcecf89734.setContent(html_a9e5d658fe3e8a7723948dc67bb7bae6);
+            
+        
+
+        circle_marker_6ee6f7db07fe2b3efcdffe779eeaebf9.bindPopup(popup_dad32a3b129a7e47c3d873bcecf89734)
+        ;
+
+        
+    
+    
+            circle_marker_6ee6f7db07fe2b3efcdffe779eeaebf9.bindTooltip(
+                `<div>
+                     <b>C18C</b><br>Lat/Lon: -68.470, 39.070<br>Length: 10 NM<br>Width: 2 NM<br>Area: 53.07 sq km<br>Distance to South Georgia: 2158 NM<br>Last update: 07/03/2026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6d7210020276d74e7f5de97bc022f0b3 = L.circleMarker(
+                [-64.98, 95.84],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.011568107223814, "stroke": true, "weight": 1.5}
+            ).addTo(marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a);
+        
+    
+        var popup_be510ec09e8c717e042678336ac07086 = L.popup({
+  "maxWidth": 460,
+});
+
+        
+            
+                var html_23311a0c0204d22cbdc3bdb5a0e92d69 = $(`<div id="html_23311a0c0204d22cbdc3bdb5a0e92d69" style="width: 100.0%; height: 100.0%;"><b>C21B</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>C21B</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>12</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>8</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-64.98</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>95.84</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>99.99</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>75.5</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>258.97</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>07/03/2026</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Latitude</th><td>-64.98000</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Longitude</th><td>95.84000</td></tr><tr><th style='text-align:left;padding-right:8px'>Distance to South Georgia</th><td>3312.7 NM</td></tr></table></div>`)[0];
+                popup_be510ec09e8c717e042678336ac07086.setContent(html_23311a0c0204d22cbdc3bdb5a0e92d69);
+            
+        
+
+        circle_marker_6d7210020276d74e7f5de97bc022f0b3.bindPopup(popup_be510ec09e8c717e042678336ac07086)
+        ;
+
+        
+    
+    
+            circle_marker_6d7210020276d74e7f5de97bc022f0b3.bindTooltip(
+                `<div>
+                     <b>C21B</b><br>Lat/Lon: -64.980, 95.840<br>Length: 12 NM<br>Width: 8 NM<br>Area: 258.97 sq km<br>Distance to South Georgia: 3313 NM<br>Last update: 07/03/2026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_dca0e540408465ba3ce0bb20517e7cd8 = L.circleMarker(
+                [-64.84, 96.02],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 1.5}
+            ).addTo(marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a);
+        
+    
+        var popup_5bb3fba0697bbe5111c5dd427434846b = L.popup({
+  "maxWidth": 460,
+});
+
+        
+            
+                var html_035b6fb038627d7a68e092dd8d37fea2 = $(`<div id="html_035b6fb038627d7a68e092dd8d37fea2" style="width: 100.0%; height: 100.0%;"><b>C24</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>C24</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>11</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>3</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-64.84</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>96.02</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>22.35</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>16.87</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>57.88</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>07/03/2026</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Latitude</th><td>-64.84000</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Longitude</th><td>96.02000</td></tr><tr><th style='text-align:left;padding-right:8px'>Distance to South Georgia</th><td>3322.2 NM</td></tr></table></div>`)[0];
+                popup_5bb3fba0697bbe5111c5dd427434846b.setContent(html_035b6fb038627d7a68e092dd8d37fea2);
+            
+        
+
+        circle_marker_dca0e540408465ba3ce0bb20517e7cd8.bindPopup(popup_5bb3fba0697bbe5111c5dd427434846b)
+        ;
+
+        
+    
+    
+            circle_marker_dca0e540408465ba3ce0bb20517e7cd8.bindTooltip(
+                `<div>
+                     <b>C24</b><br>Lat/Lon: -64.840, 96.020<br>Length: 11 NM<br>Width: 3 NM<br>Area: 57.88 sq km<br>Distance to South Georgia: 3322 NM<br>Last update: 07/03/2026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_830e6000bf989d13c1b936f11a29ea9c = L.circleMarker(
+                [-64.78, 96.28],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 1.5}
+            ).addTo(marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a);
+        
+    
+        var popup_5a14bf06066e1abdc9f3cbf82b96a183 = L.popup({
+  "maxWidth": 460,
+});
+
+        
+            
+                var html_69dc7e4da3757f1cb986679a38581d36 = $(`<div id="html_69dc7e4da3757f1cb986679a38581d36" style="width: 100.0%; height: 100.0%;"><b>C30</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>C30</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>9</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>3</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-64.78</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>96.28</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>28.98</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>21.89</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>75.06</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>07/03/2026</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Latitude</th><td>-64.78000</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Longitude</th><td>96.28000</td></tr><tr><th style='text-align:left;padding-right:8px'>Distance to South Georgia</th><td>3328.8 NM</td></tr></table></div>`)[0];
+                popup_5a14bf06066e1abdc9f3cbf82b96a183.setContent(html_69dc7e4da3757f1cb986679a38581d36);
+            
+        
+
+        circle_marker_830e6000bf989d13c1b936f11a29ea9c.bindPopup(popup_5a14bf06066e1abdc9f3cbf82b96a183)
+        ;
+
+        
+    
+    
+            circle_marker_830e6000bf989d13c1b936f11a29ea9c.bindTooltip(
+                `<div>
+                     <b>C30</b><br>Lat/Lon: -64.780, 96.280<br>Length: 9 NM<br>Width: 3 NM<br>Area: 75.06 sq km<br>Distance to South Georgia: 3329 NM<br>Last update: 07/03/2026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_90943de590e3bcfed71179e6434028db = L.circleMarker(
+                [-64.68, 96.49],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 1.5}
+            ).addTo(marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a);
+        
+    
+        var popup_d1fd984e06377193a69f0582827464cc = L.popup({
+  "maxWidth": 460,
+});
+
+        
+            
+                var html_baa317f1e3a54ea10696dc194ef68063 = $(`<div id="html_baa317f1e3a54ea10696dc194ef68063" style="width: 100.0%; height: 100.0%;"><b>C31</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>C31</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>9</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>3</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-64.68</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>96.49</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>28.21</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>21.3</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>73.07</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>07/03/2026</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Latitude</th><td>-64.68000</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Longitude</th><td>96.49000</td></tr><tr><th style='text-align:left;padding-right:8px'>Distance to South Georgia</th><td>3336.7 NM</td></tr></table></div>`)[0];
+                popup_d1fd984e06377193a69f0582827464cc.setContent(html_baa317f1e3a54ea10696dc194ef68063);
+            
+        
+
+        circle_marker_90943de590e3bcfed71179e6434028db.bindPopup(popup_d1fd984e06377193a69f0582827464cc)
+        ;
+
+        
+    
+    
+            circle_marker_90943de590e3bcfed71179e6434028db.bindTooltip(
+                `<div>
+                     <b>C31</b><br>Lat/Lon: -64.680, 96.490<br>Length: 9 NM<br>Width: 3 NM<br>Area: 73.07 sq km<br>Distance to South Georgia: 3337 NM<br>Last update: 07/03/2026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d249243aa82d6db14dce06ceda5adbc9 = L.circleMarker(
+                [-67.52, 146.47],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9.656671984195466, "stroke": true, "weight": 1.5}
+            ).addTo(marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a);
+        
+    
+        var popup_4ef5cad1d58f88b09dffee2a944c8999 = L.popup({
+  "maxWidth": 460,
+});
+
+        
+            
+                var html_d7d6a094623d65c6cb1541acc28a7aef = $(`<div id="html_d7d6a094623d65c6cb1541acc28a7aef" style="width: 100.0%; height: 100.0%;"><b>C36</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>C36</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>23</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>16</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-67.52</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>146.47</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>330.41</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>249.5</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>855.76</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>07/03/2026</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Latitude</th><td>-67.52000</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Longitude</th><td>146.47000</td></tr><tr><th style='text-align:left;padding-right:8px'>Distance to South Georgia</th><td>3484.1 NM</td></tr></table></div>`)[0];
+                popup_4ef5cad1d58f88b09dffee2a944c8999.setContent(html_d7d6a094623d65c6cb1541acc28a7aef);
+            
+        
+
+        circle_marker_d249243aa82d6db14dce06ceda5adbc9.bindPopup(popup_4ef5cad1d58f88b09dffee2a944c8999)
+        ;
+
+        
+    
+    
+            circle_marker_d249243aa82d6db14dce06ceda5adbc9.bindTooltip(
+                `<div>
+                     <b>C36</b><br>Lat/Lon: -67.520, 146.470<br>Length: 23 NM<br>Width: 16 NM<br>Area: 855.76 sq km<br>Distance to South Georgia: 3484 NM<br>Last update: 07/03/2026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6676d276ff8e62a30286b5ee7fe48901 = L.circleMarker(
+                [-66.79, 64.2],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 1.5}
+            ).addTo(marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a);
+        
+    
+        var popup_93a2ea0c65ffaec479ffc22b59bc5465 = L.popup({
+  "maxWidth": 460,
+});
+
+        
+            
+                var html_b1a8cf136a36d105791058ba06d23fe7 = $(`<div id="html_b1a8cf136a36d105791058ba06d23fe7" style="width: 100.0%; height: 100.0%;"><b>C39</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>C39</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>8</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>3</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-66.79</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>64.2</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>20.13</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>15.2</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>52.13</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>07/03/2026</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Latitude</th><td>-66.79000</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Longitude</th><td>64.20000</td></tr><tr><th style='text-align:left;padding-right:8px'>Distance to South Georgia</th><td>2713.7 NM</td></tr></table></div>`)[0];
+                popup_93a2ea0c65ffaec479ffc22b59bc5465.setContent(html_b1a8cf136a36d105791058ba06d23fe7);
+            
+        
+
+        circle_marker_6676d276ff8e62a30286b5ee7fe48901.bindPopup(popup_93a2ea0c65ffaec479ffc22b59bc5465)
+        ;
+
+        
+    
+    
+            circle_marker_6676d276ff8e62a30286b5ee7fe48901.bindTooltip(
+                `<div>
+                     <b>C39</b><br>Lat/Lon: -66.790, 64.200<br>Length: 8 NM<br>Width: 3 NM<br>Area: 52.13 sq km<br>Distance to South Georgia: 2714 NM<br>Last update: 07/03/2026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c94cc31a4f1feaa262267a28035d0a9f = L.circleMarker(
+                [-66.63, 81.92],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 12.889155880802814, "stroke": true, "weight": 1.5}
+            ).addTo(marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a);
+        
+    
+        var popup_0ad82dfead58d0a95a72c98c7441c283 = L.popup({
+  "maxWidth": 460,
+});
+
+        
+            
+                var html_5062a454fae778c0c1bfb2ee34201041 = $(`<div id="html_5062a454fae778c0c1bfb2ee34201041" style="width: 100.0%; height: 100.0%;"><b>D15A</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>D15A</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>51</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>22</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-66.63</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>81.92</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>1172.77</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>885.59</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>3037.47</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>07/03/2026</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Latitude</th><td>-66.63000</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Longitude</th><td>81.92000</td></tr><tr><th style='text-align:left;padding-right:8px'>Distance to South Georgia</th><td>3030.0 NM</td></tr></table></div>`)[0];
+                popup_0ad82dfead58d0a95a72c98c7441c283.setContent(html_5062a454fae778c0c1bfb2ee34201041);
+            
+        
+
+        circle_marker_c94cc31a4f1feaa262267a28035d0a9f.bindPopup(popup_0ad82dfead58d0a95a72c98c7441c283)
+        ;
+
+        
+    
+    
+            circle_marker_c94cc31a4f1feaa262267a28035d0a9f.bindTooltip(
+                `<div>
+                     <b>D15A</b><br>Lat/Lon: -66.630, 81.920<br>Length: 51 NM<br>Width: 22 NM<br>Area: 3037.47 sq km<br>Distance to South Georgia: 3030 NM<br>Last update: 07/03/2026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4f69a6ab8d4c1e9b3c42f31e39a17c13 = L.circleMarker(
+                [-67.02, 81.57],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 9.088587865028288, "stroke": true, "weight": 1.5}
+            ).addTo(marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a);
+        
+    
+        var popup_54cae3e5ebea7826091e511d97721675 = L.popup({
+  "maxWidth": 460,
+});
+
+        
+            
+                var html_bf1f5868ff6000a01227b7a357471f1d = $(`<div id="html_bf1f5868ff6000a01227b7a357471f1d" style="width: 100.0%; height: 100.0%;"><b>D15B</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>D15B</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>20</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>12</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-67.02</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>81.57</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>235.72</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>178.0</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>610.52</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>07/03/2026</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Latitude</th><td>-67.02000</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Longitude</th><td>81.57000</td></tr><tr><th style='text-align:left;padding-right:8px'>Distance to South Georgia</th><td>3007.0 NM</td></tr></table></div>`)[0];
+                popup_54cae3e5ebea7826091e511d97721675.setContent(html_bf1f5868ff6000a01227b7a357471f1d);
+            
+        
+
+        circle_marker_4f69a6ab8d4c1e9b3c42f31e39a17c13.bindPopup(popup_54cae3e5ebea7826091e511d97721675)
+        ;
+
+        
+    
+    
+            circle_marker_4f69a6ab8d4c1e9b3c42f31e39a17c13.bindTooltip(
+                `<div>
+                     <b>D15B</b><br>Lat/Lon: -67.020, 81.570<br>Length: 20 NM<br>Width: 12 NM<br>Area: 610.52 sq km<br>Distance to South Georgia: 3007 NM<br>Last update: 07/03/2026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_46e6c32cd86af441cb8120a11618e904 = L.circleMarker(
+                [-67.2, 79.44],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 1.5}
+            ).addTo(marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a);
+        
+    
+        var popup_7003184403c1dc42fc05a65fbf4f5cef = L.popup({
+  "maxWidth": 460,
+});
+
+        
+            
+                var html_507769927f4de9da3ac7ad70dd5ebc4c = $(`<div id="html_507769927f4de9da3ac7ad70dd5ebc4c" style="width: 100.0%; height: 100.0%;"><b>D15C</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>D15C</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>14</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>7</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-67.2</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>79.44</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>44.64</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>33.71</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>115.62</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>07/03/2026</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Latitude</th><td>-67.20000</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Longitude</th><td>79.44000</td></tr><tr><th style='text-align:left;padding-right:8px'>Distance to South Georgia</th><td>2965.3 NM</td></tr></table></div>`)[0];
+                popup_7003184403c1dc42fc05a65fbf4f5cef.setContent(html_507769927f4de9da3ac7ad70dd5ebc4c);
+            
+        
+
+        circle_marker_46e6c32cd86af441cb8120a11618e904.bindPopup(popup_7003184403c1dc42fc05a65fbf4f5cef)
+        ;
+
+        
+    
+    
+            circle_marker_46e6c32cd86af441cb8120a11618e904.bindTooltip(
+                `<div>
+                     <b>D15C</b><br>Lat/Lon: -67.200, 79.440<br>Length: 14 NM<br>Width: 7 NM<br>Area: 115.62 sq km<br>Distance to South Georgia: 2965 NM<br>Last update: 07/03/2026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_777a12a869e8fb70e80b8b89909de9e5 = L.circleMarker(
+                [-67.27, 79.25],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 1.5}
+            ).addTo(marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a);
+        
+    
+        var popup_6f0cb63ee06ddf42992460f59ab8be73 = L.popup({
+  "maxWidth": 460,
+});
+
+        
+            
+                var html_3dd957a62b8ce6d343c947b29f76091f = $(`<div id="html_3dd957a62b8ce6d343c947b29f76091f" style="width: 100.0%; height: 100.0%;"><b>D15D</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>D15D</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>8</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>6</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-67.27</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>79.25</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>21.58</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>16.3</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>55.89</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>07/03/2026</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Latitude</th><td>-67.27000</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Longitude</th><td>79.25000</td></tr><tr><th style='text-align:left;padding-right:8px'>Distance to South Georgia</th><td>2959.2 NM</td></tr></table></div>`)[0];
+                popup_6f0cb63ee06ddf42992460f59ab8be73.setContent(html_3dd957a62b8ce6d343c947b29f76091f);
+            
+        
+
+        circle_marker_777a12a869e8fb70e80b8b89909de9e5.bindPopup(popup_6f0cb63ee06ddf42992460f59ab8be73)
+        ;
+
+        
+    
+    
+            circle_marker_777a12a869e8fb70e80b8b89909de9e5.bindTooltip(
+                `<div>
+                     <b>D15D</b><br>Lat/Lon: -67.270, 79.250<br>Length: 8 NM<br>Width: 6 NM<br>Area: 55.89 sq km<br>Distance to South Georgia: 2959 NM<br>Last update: 07/03/2026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_7106a509b1b3bd467f6811e18183f9b0 = L.circleMarker(
+                [-69.43, 74.71],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 1.5}
+            ).addTo(marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a);
+        
+    
+        var popup_236562f0cb9b2ae4db570f1de14d2af1 = L.popup({
+  "maxWidth": 460,
+});
+
+        
+            
+                var html_a579272ff4a03f8cfde137877aa23b74 = $(`<div id="html_a579272ff4a03f8cfde137877aa23b74" style="width: 100.0%; height: 100.0%;"><b>D23</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>D23</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>7</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>6</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-69.43</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>74.71</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>40.77</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>30.79</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>105.6</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>07/03/2026</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Latitude</th><td>-69.43000</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Longitude</th><td>74.71000</td></tr><tr><th style='text-align:left;padding-right:8px'>Distance to South Georgia</th><td>2796.9 NM</td></tr></table></div>`)[0];
+                popup_236562f0cb9b2ae4db570f1de14d2af1.setContent(html_a579272ff4a03f8cfde137877aa23b74);
+            
+        
+
+        circle_marker_7106a509b1b3bd467f6811e18183f9b0.bindPopup(popup_236562f0cb9b2ae4db570f1de14d2af1)
+        ;
+
+        
+    
+    
+            circle_marker_7106a509b1b3bd467f6811e18183f9b0.bindTooltip(
+                `<div>
+                     <b>D23</b><br>Lat/Lon: -69.430, 74.710<br>Length: 7 NM<br>Width: 6 NM<br>Area: 105.6 sq km<br>Distance to South Georgia: 2797 NM<br>Last update: 07/03/2026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_001f9aec52481f16d88029205b392b56 = L.circleMarker(
+                [-62.03, -41.25],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 1.5}
+            ).addTo(marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a);
+        
+    
+        var popup_17eeeefc457cf53f5ce4ec0c73b28609 = L.popup({
+  "maxWidth": 460,
+});
+
+        
+            
+                var html_8188fe2307ace55856670187702bb851 = $(`<div id="html_8188fe2307ace55856670187702bb851" style="width: 100.0%; height: 100.0%;"><b>D32</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>D32</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>9</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>6</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-62.03</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>-41.25</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>41.08</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>31.02</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>106.39</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>07/03/2026</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Latitude</th><td>-62.03000</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Longitude</th><td>-41.25000</td></tr><tr><th style='text-align:left;padding-right:8px'>Distance to South Georgia</th><td>479.2 NM</td></tr></table></div>`)[0];
+                popup_17eeeefc457cf53f5ce4ec0c73b28609.setContent(html_8188fe2307ace55856670187702bb851);
+            
+        
+
+        circle_marker_001f9aec52481f16d88029205b392b56.bindPopup(popup_17eeeefc457cf53f5ce4ec0c73b28609)
+        ;
+
+        
+    
+    
+            circle_marker_001f9aec52481f16d88029205b392b56.bindTooltip(
+                `<div>
+                     <b>D32</b><br>Lat/Lon: -62.030, -41.250<br>Length: 9 NM<br>Width: 6 NM<br>Area: 106.39 sq km<br>Distance to South Georgia: 479 NM<br>Last update: 07/03/2026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6a18a266d546e38cf60bc07b47c69c14 = L.circleMarker(
+                [-64.33, -55.82],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.639957386019706, "stroke": true, "weight": 1.5}
+            ).addTo(marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a);
+        
+    
+        var popup_0b415484b3a9e699372a24d87a1cc34c = L.popup({
+  "maxWidth": 460,
+});
+
+        
+            
+                var html_ff9eab933b2233a1df230888b82f1250 = $(`<div id="html_ff9eab933b2233a1df230888b82f1250" style="width: 100.0%; height: 100.0%;"><b>D33A</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>D33A</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>19</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>10</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-64.33</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>-55.82</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>172.22</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>130.04</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>446.04</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>07/03/2026</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Latitude</th><td>-64.33000</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Longitude</th><td>-55.82000</td></tr><tr><th style='text-align:left;padding-right:8px'>Distance to South Georgia</th><td>829.8 NM</td></tr></table></div>`)[0];
+                popup_0b415484b3a9e699372a24d87a1cc34c.setContent(html_ff9eab933b2233a1df230888b82f1250);
+            
+        
+
+        circle_marker_6a18a266d546e38cf60bc07b47c69c14.bindPopup(popup_0b415484b3a9e699372a24d87a1cc34c)
+        ;
+
+        
+    
+    
+            circle_marker_6a18a266d546e38cf60bc07b47c69c14.bindTooltip(
+                `<div>
+                     <b>D33A</b><br>Lat/Lon: -64.330, -55.820<br>Length: 19 NM<br>Width: 10 NM<br>Area: 446.04 sq km<br>Distance to South Georgia: 830 NM<br>Last update: 07/03/2026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c7caf818a170a032da531980eace8ca4 = L.circleMarker(
+                [-62.79, -53.24],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.238442538909588, "stroke": true, "weight": 1.5}
+            ).addTo(marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a);
+        
+    
+        var popup_70a9f9745b90c221c5e6184f89098eb1 = L.popup({
+  "maxWidth": 460,
+});
+
+        
+            
+                var html_175f6796882ea8f15cf1a7ea10420cb3 = $(`<div id="html_175f6796882ea8f15cf1a7ea10420cb3" style="width: 100.0%; height: 100.0%;"><b>D33B</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>D33B</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>21</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>12</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-62.79</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>-53.24</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>123.81</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>93.49</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>320.68</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>07/03/2026</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Latitude</th><td>-62.79000</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Longitude</th><td>-53.24000</td></tr><tr><th style='text-align:left;padding-right:8px'>Distance to South Georgia</th><td>719.3 NM</td></tr></table></div>`)[0];
+                popup_70a9f9745b90c221c5e6184f89098eb1.setContent(html_175f6796882ea8f15cf1a7ea10420cb3);
+            
+        
+
+        circle_marker_c7caf818a170a032da531980eace8ca4.bindPopup(popup_70a9f9745b90c221c5e6184f89098eb1)
+        ;
+
+        
+    
+    
+            circle_marker_c7caf818a170a032da531980eace8ca4.bindTooltip(
+                `<div>
+                     <b>D33B</b><br>Lat/Lon: -62.790, -53.240<br>Length: 21 NM<br>Width: 12 NM<br>Area: 320.68 sq km<br>Distance to South Georgia: 719 NM<br>Last update: 07/03/2026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f6485d0471bf555fe480d94bcee942bf = L.circleMarker(
+                [-63.55, -53.6],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 1.5}
+            ).addTo(marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a);
+        
+    
+        var popup_6ba9f94a13872ea4b8fdca10f7a9a7a0 = L.popup({
+  "maxWidth": 460,
+});
+
+        
+            
+                var html_2facf69ae642cc100f69b1b6489a1d48 = $(`<div id="html_2facf69ae642cc100f69b1b6489a1d48" style="width: 100.0%; height: 100.0%;"><b>D33C</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>D33C</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>9</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>5</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-63.55</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>-53.6</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>31.55</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>23.82</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>81.72</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>07/03/2026</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Latitude</th><td>-63.55000</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Longitude</th><td>-53.60000</td></tr><tr><th style='text-align:left;padding-right:8px'>Distance to South Georgia</th><td>754.8 NM</td></tr></table></div>`)[0];
+                popup_6ba9f94a13872ea4b8fdca10f7a9a7a0.setContent(html_2facf69ae642cc100f69b1b6489a1d48);
+            
+        
+
+        circle_marker_f6485d0471bf555fe480d94bcee942bf.bindPopup(popup_6ba9f94a13872ea4b8fdca10f7a9a7a0)
+        ;
+
+        
+    
+    
+            circle_marker_f6485d0471bf555fe480d94bcee942bf.bindTooltip(
+                `<div>
+                     <b>D33C</b><br>Lat/Lon: -63.550, -53.600<br>Length: 9 NM<br>Width: 5 NM<br>Area: 81.72 sq km<br>Distance to South Georgia: 755 NM<br>Last update: 07/03/2026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e9bc2180cf3df0a1008ab6517d97b5ed = L.circleMarker(
+                [-64.16, -55.07],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 1.5}
+            ).addTo(marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a);
+        
+    
+        var popup_d32657fc75877f5bf7a4eed0965c74f3 = L.popup({
+  "maxWidth": 460,
+});
+
+        
+            
+                var html_ace1e4480b251892ef3444e8a54b9013 = $(`<div id="html_ace1e4480b251892ef3444e8a54b9013" style="width: 100.0%; height: 100.0%;"><b>D33D</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>D33D</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>15</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>6</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-64.16</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>-55.07</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>83.08</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>62.73</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>215.17</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>07/03/2026</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Latitude</th><td>-64.16000</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Longitude</th><td>-55.07000</td></tr><tr><th style='text-align:left;padding-right:8px'>Distance to South Georgia</th><td>808.0 NM</td></tr></table></div>`)[0];
+                popup_d32657fc75877f5bf7a4eed0965c74f3.setContent(html_ace1e4480b251892ef3444e8a54b9013);
+            
+        
+
+        circle_marker_e9bc2180cf3df0a1008ab6517d97b5ed.bindPopup(popup_d32657fc75877f5bf7a4eed0965c74f3)
+        ;
+
+        
+    
+    
+            circle_marker_e9bc2180cf3df0a1008ab6517d97b5ed.bindTooltip(
+                `<div>
+                     <b>D33D</b><br>Lat/Lon: -64.160, -55.070<br>Length: 15 NM<br>Width: 6 NM<br>Area: 215.17 sq km<br>Distance to South Georgia: 808 NM<br>Last update: 07/03/2026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9c145cd154632de86f71e8c2bab6d6d7 = L.circleMarker(
+                [-67.15, 82.06],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 1.5}
+            ).addTo(marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a);
+        
+    
+        var popup_7b0e3e17ceff0e359f101b89de8bba1f = L.popup({
+  "maxWidth": 460,
+});
+
+        
+            
+                var html_2e55297ce39c41e320c77ec3d2262536 = $(`<div id="html_2e55297ce39c41e320c77ec3d2262536" style="width: 100.0%; height: 100.0%;"><b>D34</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>D34</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>11</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>8</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-67.15</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>82.06</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>64.02</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>48.34</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>165.8</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>07/03/2026</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Latitude</th><td>-67.15000</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Longitude</th><td>82.06000</td></tr><tr><th style='text-align:left;padding-right:8px'>Distance to South Georgia</th><td>3008.8 NM</td></tr></table></div>`)[0];
+                popup_7b0e3e17ceff0e359f101b89de8bba1f.setContent(html_2e55297ce39c41e320c77ec3d2262536);
+            
+        
+
+        circle_marker_9c145cd154632de86f71e8c2bab6d6d7.bindPopup(popup_7b0e3e17ceff0e359f101b89de8bba1f)
+        ;
+
+        
+    
+    
+            circle_marker_9c145cd154632de86f71e8c2bab6d6d7.bindTooltip(
+                `<div>
+                     <b>D34</b><br>Lat/Lon: -67.150, 82.060<br>Length: 11 NM<br>Width: 8 NM<br>Area: 165.8 sq km<br>Distance to South Georgia: 3009 NM<br>Last update: 07/03/2026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8d73502bab4c9d23d143725a804e0e53 = L.circleMarker(
+                [-62.45, -45.53],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.381766676230063, "stroke": true, "weight": 1.5}
+            ).addTo(marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a);
+        
+    
+        var popup_17b133fa3f6dd4ffb40522ba2e5fdb9f = L.popup({
+  "maxWidth": 460,
+});
+
+        
+            
+                var html_0b436cef406ddbc2e173d52bbcf8f45b = $(`<div id="html_0b436cef406ddbc2e173d52bbcf8f45b" style="width: 100.0%; height: 100.0%;"><b>D35</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>D35</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>28</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>6</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-62.45</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>-45.53</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>140.18</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>105.85</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>363.06</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>07/03/2026</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Latitude</th><td>-62.45000</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Longitude</th><td>-45.53000</td></tr><tr><th style='text-align:left;padding-right:8px'>Distance to South Georgia</th><td>556.3 NM</td></tr></table></div>`)[0];
+                popup_17b133fa3f6dd4ffb40522ba2e5fdb9f.setContent(html_0b436cef406ddbc2e173d52bbcf8f45b);
+            
+        
+
+        circle_marker_8d73502bab4c9d23d143725a804e0e53.bindPopup(popup_17b133fa3f6dd4ffb40522ba2e5fdb9f)
+        ;
+
+        
+    
+    
+            circle_marker_8d73502bab4c9d23d143725a804e0e53.bindTooltip(
+                `<div>
+                     <b>D35</b><br>Lat/Lon: -62.450, -45.530<br>Length: 28 NM<br>Width: 6 NM<br>Area: 363.06 sq km<br>Distance to South Georgia: 556 NM<br>Last update: 07/03/2026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_bed8d46ce3bf361318cd97d89d331a72 = L.circleMarker(
+                [-69.21, 36.37],
+                {"bubblingMouseEvents": true, "color": "black", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "yellow", "fillOpacity": 0.9, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8.73224381232715, "stroke": true, "weight": 1.5}
+            ).addTo(marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a);
+        
+    
+        var popup_5fcd7750cd04ade83f2778b699a15aa1 = L.popup({
+  "maxWidth": 460,
+});
+
+        
+            
+                var html_510be701e7cafec1ffe10121b063a022 = $(`<div id="html_510be701e7cafec1ffe10121b063a022" style="width: 100.0%; height: 100.0%;"><b>D37</b><br><table><tr><th style='text-align:left;padding-right:8px'>Iceberg</th><td>D37</td></tr><tr><th style='text-align:left;padding-right:8px'>Length (NM)</th><td>30</td></tr><tr><th style='text-align:left;padding-right:8px'>Width (NM)</th><td>7</td></tr><tr><th style='text-align:left;padding-right:8px'>Latitude</th><td>-69.21</td></tr><tr><th style='text-align:left;padding-right:8px'>Longitude</th><td>36.37</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqMI)</th><td>184.47</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqNM)</th><td>139.29</td></tr><tr><th style='text-align:left;padding-right:8px'>Area (sqKM)</th><td>477.77</td></tr><tr><th style='text-align:left;padding-right:8px'>Last Update</th><td>07/03/2026</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Latitude</th><td>-69.21000</td></tr><tr><th style='text-align:left;padding-right:8px'>Mapped Longitude</th><td>36.37000</td></tr><tr><th style='text-align:left;padding-right:8px'>Distance to South Georgia</th><td>2090.6 NM</td></tr></table></div>`)[0];
+                popup_5fcd7750cd04ade83f2778b699a15aa1.setContent(html_510be701e7cafec1ffe10121b063a022);
+            
+        
+
+        circle_marker_bed8d46ce3bf361318cd97d89d331a72.bindPopup(popup_5fcd7750cd04ade83f2778b699a15aa1)
+        ;
+
+        
+    
+    
+            circle_marker_bed8d46ce3bf361318cd97d89d331a72.bindTooltip(
+                `<div>
+                     <b>D37</b><br>Lat/Lon: -69.210, 36.370<br>Length: 30 NM<br>Width: 7 NM<br>Area: 477.77 sq km<br>Distance to South Georgia: 2091 NM<br>Last update: 07/03/2026
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a.addTo(map_8a8ff45791f87e90e48413bd2f7e5cea);
+        
+    
+            var tile_layer_6c4bf8fb0f86c535fc9510583f227975 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detect_retina": false, "max_native_zoom": 19, "max_zoom": 19, "min_zoom": 0, "no_wrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+            var mini_map_cfb1312fe01cb7f285fc74c93a09c969 = new L.Control.MiniMap(
+                tile_layer_6c4bf8fb0f86c535fc9510583f227975,
+                {
+  "position": "bottomright",
+  "width": 150,
+  "height": 150,
+  "collapsedWidth": 25,
+  "collapsedHeight": 25,
+  "zoomLevelOffset": -5,
+  "centerFixed": false,
+  "zoomAnimation": false,
+  "toggleDisplay": true,
+  "autoToggleDisplay": false,
+  "minimized": false,
+}
+            );
+            map_8a8ff45791f87e90e48413bd2f7e5cea.addControl(mini_map_cfb1312fe01cb7f285fc74c93a09c969);
+        
+    
+            var measure_control_ba41a4a688502a4f7361a74dd55f4049 = new L.Control.Measure(
+                {
+  "position": "topleft",
+  "primaryLengthUnit": "meters",
+  "secondaryLengthUnit": "miles",
+  "primaryAreaUnit": "sqmeters",
+  "secondaryAreaUnit": "acres",
+});
+            map_8a8ff45791f87e90e48413bd2f7e5cea.addControl(measure_control_ba41a4a688502a4f7361a74dd55f4049);
+
+            // Workaround for using this plugin with Leaflet>=1.8.0
+            // https://github.com/ljagis/leaflet-measure/issues/171
+            L.Control.Measure.include({
+                _setCaptureMarkerIcon: function () {
+                    // disable autopan
+                    this._captureMarker.options.autoPanOnFocus = false;
+                    // default function
+                    this._captureMarker.setIcon(
+                        L.divIcon({
+                            iconSize: this._map.getSize().multiplyBy(2)
+                        })
+                    );
+                },
+            });
+
+        
+    
+            var layer_control_4aa77087b64068d744773bc4a53c8d54_layers = {
+                base_layers : {
+                    "cartodbpositron" : tile_layer_30128300baec5e59f7d93f04ba492a94,
+                    "OpenStreetMap" : tile_layer_9677b5d0891b90ec0b9786e25c4dff9c,
+                    "Esri World Imagery" : tile_layer_2fed34b29dfad90b7841186d1bdd2f24,
+                },
+                overlays :  {
+                    "USNIC Antarctic icebergs" : marker_cluster_9f62fd2426bac87ad3c3d8b59010ad1a,
+                },
+            };
+            let layer_control_4aa77087b64068d744773bc4a53c8d54 = L.control.layers(
+                layer_control_4aa77087b64068d744773bc4a53c8d54_layers.base_layers,
+                layer_control_4aa77087b64068d744773bc4a53c8d54_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": true,
+  "autoZIndex": true,
+}
+            ).addTo(map_8a8ff45791f87e90e48413bd2f7e5cea);
+
+        
+</script>
+</html>
